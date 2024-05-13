@@ -1,17 +1,5 @@
-  <%= form_with(model: produto) do |form| %>
-    <% if produto.errors.any? %>
-      <div style="color: red">
-        <h2><%= pluralize(produto.errors.count, "error") %> prohibited this produto from being saved:</h2>
-
-        <ul>
-          <% produto.errors.each do |error| %>
-            <li><%= error.full_message %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
-
-    <div>
+<div class="nested-fields">
+  <div>
       <%= form.label :nome, style: "display: block" %>
       <%= form.text_field :nome %>
     </div>
@@ -35,9 +23,4 @@
       <%= form.label :categoria, style: "display: block" %>
       <%= form.text_field :categoria %>
     </div>
-
-    <div>
-      <%= form.submit %>
-    </div>
-  <% end %>
-
+</div>

@@ -1,0 +1,55 @@
+<%= form_with(model: item) do |form| %>
+  <% if item.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(item.errors.count, "error") %> prohibited this item from being saved:</h2>
+
+      <ul>
+        <% item.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :pedido_id, style: "display: block" %>
+    <%= form.text_field :pedido_id %>
+  </div>
+
+  <div>
+    <%= form.label :produto_id, style: "display: block" %>
+    <%= form.text_field :produto_id %>
+  </div>
+
+  <div>
+    <%= form.label :quantidade, style: "display: block" %>
+    <%= form.number_field :quantidade %>
+  </div>
+
+  <div>
+    <%= form.label :preco_unitario, style: "display: block" %>
+    <%= form.text_field :preco_unitario %>
+  </div>
+
+  <div>
+    <%= form.label :subtotal, style: "display: block" %>
+    <%= form.text_field :subtotal %>
+  </div>
+
+  <div>
+    <%= form.label :observacoes, style: "display: block" %>
+    <%= form.text_field :observacoes %>
+  </div>
+
+  <div class="produtos">
+    <%= form.fields_for :produtos do |produto| %>
+      <%= render 'produto_fields', form: produto %>
+    <% end %>
+  </div>
+  
+  <%= link_to_add_association "Add produto", form, :produtos, data: {association_insertion_node: '.produtos', association_insertion_method: :append} %>
+  
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

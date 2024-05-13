@@ -74,6 +74,7 @@ group :test do
 
 end
 
-gem "nested_form", "~> 0.3.2"
 
 gem "jquery-rails", "~> 4.6"
+
+gem "cocoon", "~> 1.2"
