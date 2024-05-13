@@ -13,6 +13,10 @@ class PedidosController < ApplicationController
   # GET /pedidos/new
   def new
     @pedido = Pedido.new
+    
+    @pedido.comanda = Comanda.find(params[:comanda_id]) unless params[:comanda_id].nil?
+    @pedido.data = Date.today
+    @pedido.hora = Time.now
   end
 
   # GET /pedidos/1/edit
@@ -22,6 +26,10 @@ class PedidosController < ApplicationController
   # POST /pedidos or /pedidos.json
   def create
     @pedido = Pedido.new(pedido_params)
+
+    @pedido.comanda = Comanda.find(params[:comanda_id])
+    @pedido.data = Date.today
+    @pedido.hora = Time.now
 
     respond_to do |format|
       if @pedido.save
