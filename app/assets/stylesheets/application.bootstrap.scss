@@ -1,2 +1,36 @@
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';
+
+/* Estilo para o botão flutuante */
+.floating-btn {
+    position: fixed;
+    bottom: 40px;
+    right: 60px;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.floating-btn-square {
+    position: fixed;
+    bottom: 40px;
+    right: 60px;
+    border: none;
+    height: 60px;
+    text-align: center;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Efeito de hover */
+.floating-btn:hover {
+    background-color: #0056b3;
+}

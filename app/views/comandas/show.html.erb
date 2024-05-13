@@ -1,11 +1,45 @@
-<p style="color: green"><%= notice %></p>
 
-<%= render @comanda %>
+<% #= render @comanda %>
+<h1 class="display-5">
+  <%= link_to comandas_path, class: "nav-link" do %>
+  <i class="bi bi-caret-left fs-1"></i>
+  Comanda N° <%= @comanda.numero %>
+<% end %>
+</h1>
+<div class="row pt-3">
+  <hr>
+  
+  <div class="col-12 pt-4">
+    <% if @comanda.pedidos.empty? %>
+      <p class="pb-3 text-center">Não tem pedidos.</p>
+    <% else %>
+      <% @comanda.pedidos.each do |pedido| %>
+        <%= render "pedidos/pedido" %>
+      <% end %>
+    <% end %>
+  </div>
+  
+  <hr>
 
-<div>
-  <%= link_to "Edit this comanda", edit_comanda_path(@comanda) %> |
-  <%= link_to "Back to comandas", comandas_path %> |
-  <%= link_to "Add pedido", new_pedido_path(comanda_id: @comanda.id) %>
+  <div class="col-1 pt-4">
+    <label class="form-label">TOTAL</label>    
+    <input class="form-control" type="text" aria-label="" value="<%= number_with_precision(@comanda.total, precision: 2) %>" disabled readonly>
+  </div>
 
-  <%= button_to "Destroy this comanda", @comanda, method: :delete %>
+  
 </div>
+
+<div class="row pt-4">
+    <div class="col-12 text-end">
+      <%= link_to "", edit_comanda_path(@comanda), class: "btn btn-warning mt-2 fs-5 me-5 bi bi-pencil" %>
+      <%= button_to "", @comanda, method: :delete, class: "btn btn-danger  mt-2 fs-5 me-5 bi bi-trash" %>
+    </div>
+</div>
+
+<%= link_to new_pedido_path(comanda_id: @comanda.id), class: "btn btn-primary floating-btn-square fs-5" do %>
+  Adicionar pedido
+  <i class="bi bi-plus"></i>
+<% end %>
+
+
+<p style="color: green"><%= notice %></p>

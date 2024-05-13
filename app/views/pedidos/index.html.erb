@@ -4,11 +4,13 @@
 
 <div id="pedidos">
   <% @pedidos.each do |pedido| %>
-    <%= render pedido %>
+    <% #= render pedido %>
     <p>
       <%= link_to "Show this pedido", pedido %>
     </p>
   <% end %>
 </div>
 
-<%= link_to "New pedido", new_pedido_path %>
+<%= link_to new_pedido_path, class: "btn btn-primary floating-btn" do %>
+  <i class="bi bi-plus fs-1"></i>
+<% end %>

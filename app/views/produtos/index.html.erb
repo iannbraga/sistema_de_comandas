@@ -1,14 +1,21 @@
-<p style="color: green"><%= notice %></p>
+<h1 class="display-5">Produtos</h1>
 
-<h1>Produtos</h1>
-
-<div id="produtos">
-  <% @produtos.each do |produto| %>
-    <%= render produto %>
-    <p>
-      <%= link_to "Show this produto", produto %>
-    </p>
+<div id="produtos" class="row">
+  <% @produtos_por_categoria.each do |categoria, produtos| %>
+    <h6 class="text-center pt-3 display-6 fs-3"><%= categoria %></h5>
+    <hr>
+    <% produtos.each do |produto| %>
+      <div class="col d-flex justify-content-center p-3">
+        <%= link_to produto, class: "nav-link" do %>
+          <%= render "produto_card", produto: produto %>
+        <% end %>
+      </div>
+    <% end %>
   <% end %>
 </div>
 
-<%= link_to "New produto", new_produto_path %>
+<%= link_to new_produto_path, class: "btn btn-primary floating-btn" do %>
+  <i class="bi bi-plus fs-1"></i>
+<% end %>
+
+<p style="color: green"><%= notice %></p>

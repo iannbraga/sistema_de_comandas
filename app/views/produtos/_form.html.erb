@@ -1,3 +1,4 @@
+<div class="container fs-5" style="padding-top: 60px;padding-right: 60px;">
   <%= form_with(model: produto) do |form| %>
     <% if produto.errors.any? %>
       <div style="color: red">
@@ -11,33 +12,45 @@
       </div>
     <% end %>
 
-    <div>
-      <%= form.label :nome, style: "display: block" %>
-      <%= form.text_field :nome %>
-    </div>
+    <div class="row nested-fields">
+      <div class="col-3 pt-4 field">
+        <%= form.label :codigo, class: "form-label" %>
+        <%= form.number_field :codigo, class: "form-control" %>
+      </div>
 
-    <div>
-      <%= form.label :descricao, style: "display: block" %>
-      <%= form.text_area :descricao %>
-    </div>
+      <div class="col-6 pt-4 field">
+        <%= form.label :nome, class: "form-label" %>
+        <%= form.text_field :nome, class: "form-control" %>
+      </div>
 
-    <div>
-      <%= form.label :preco, style: "display: block" %>
-      <%= form.text_field :preco %>
-    </div>
+      <div class="col-3 pt-4 field">
+        <%= form.label :categoria, class: "form-label" %>
+        <%= form.text_field :categoria, class: "form-control" %>
+      </div>
 
-    <div>
-      <%= form.label :estoque, style: "display: block" %>
-      <%= form.number_field :estoque %>
-    </div>
+      <div class="col-6 pt-4 field">
+        <%= form.label :descricao, class: "form-label" %>
+        <%= form.text_field :descricao, class: "form-control" %>
+      </div>
 
-    <div>
-      <%= form.label :categoria, style: "display: block" %>
-      <%= form.text_field :categoria %>
-    </div>
+      <div class="col-3 pt-4 field">
+        <%= form.label :preco, "Preço", class: "form-label" %>
+        <%= form.text_field :preco, class: "form-control" %>
+      </div>
 
-    <div>
-      <%= form.submit %>
+      <div class="col-3 pt-4 field">
+        <%= form.label :estoque, class: "form-label" %>
+        <%= form.number_field :estoque, class: "form-control" %>
+      </div>
+
+      <div class="col-6  pt-5 mt-2 d-flex justify-content-center">
+        <%= form.submit "Cadastrar", class: "btn btn-primary w-75" %>
+      </div>
+
+      <div class="col-6   pt-5 mt-2 d-flex justify-content-center">
+        <%= link_to "Cancelar", produtos_path, class: "btn btn-danger w-75 " %>
+      </div>
     </div>
   <% end %>
 
+</div>

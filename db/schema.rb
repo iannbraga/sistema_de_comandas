@@ -13,23 +13,10 @@
 ActiveRecord::Schema[7.0].define(version: 2024_05_13_184514) do
   create_table "comandas", force: :cascade do |t|
     t.integer "numero"
+    t.string "status"
     t.decimal "total"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "status"
-  end
-
-  create_table "items", force: :cascade do |t|
-    t.integer "pedido_id", null: false
-    t.integer "produto_id", null: false
-    t.integer "quantidade"
-    t.decimal "preco_unitario"
-    t.decimal "subtotal"
-    t.string "observacoes"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["pedido_id"], name: "index_items_on_pedido_id"
-    t.index ["produto_id"], name: "index_items_on_produto_id"
   end
 
   create_table "itens", force: :cascade do |t|
@@ -61,6 +48,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_13_184514) do
     t.integer "comanda_id", null: false
     t.date "data"
     t.time "hora"
+    t.decimal "total"
     t.string "observacoes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -73,12 +61,11 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_13_184514) do
     t.decimal "preco"
     t.integer "estoque"
     t.string "categoria"
+    t.string "icone"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "items", "pedidos"
-  add_foreign_key "items", "produtos"
   add_foreign_key "itens", "pedidos"
   add_foreign_key "itens", "produtos"
   add_foreign_key "pagamentos", "comandas"

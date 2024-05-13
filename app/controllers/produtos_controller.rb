@@ -3,7 +3,8 @@ class ProdutosController < ApplicationController
 
   # GET /produtos or /produtos.json
   def index
-    @produtos = Produto.all
+    produtos = Produto.all
+    @produtos_por_categoria = produtos.group_by(&:categoria)
   end
 
   # GET /produtos/1 or /produtos/1.json
@@ -58,13 +59,14 @@ class ProdutosController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_produto
-      @produto = Produto.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def produto_params
-      params.require(:produto).permit(:nome, :descricao, :preco, :estoque, :categoria)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_produto
+    @produto = Produto.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def produto_params
+    params.require(:produto).permit(:nome, :descricao, :preco, :estoque, :categoria)
+  end
 end

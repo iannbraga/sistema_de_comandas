@@ -13,7 +13,8 @@ class PedidosController < ApplicationController
   # GET /pedidos/new
   def new
     @pedido = Pedido.new
-    
+    @pedido.itens.build
+
     @pedido.comanda = Comanda.find(params[:comanda_id]) unless params[:comanda_id].nil?
     @pedido.data = Date.today
     @pedido.hora = Time.now
@@ -66,13 +67,14 @@ class PedidosController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_pedido
-      @pedido = Pedido.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def pedido_params
-      params.require(:pedido).permit(:comanda_id, :data, :hora, :observacoes)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_pedido
+    @pedido = Pedido.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def pedido_params
+    params.require(:pedido).permit(:comanda_id, :data, :hora, :observacoes, :total, itens_attributes: [:id, :produto_id, :preco_unitario, :quantidade, :subtotal, :observacoes, :_destroy])
+  end
 end

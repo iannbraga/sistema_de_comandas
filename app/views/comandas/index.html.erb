@@ -1,14 +1,25 @@
-<p style="color: green"><%= notice %></p>
+<div class="container-fluid">
 
-<h1>Comandas</h1>
+<h1 class="display-5">Comandas</h1>
 
-<div id="comandas">
+<div id="comandas" class="row pt-5">  
   <% @comandas.each do |comanda| %>
-    <%= render comanda %>
-    <p>
-      <%= link_to "Show this comanda", comanda %>
-    </p>
+    <div class="col-sm-6 col-md-3 col-xl-2">
+      <%= link_to comanda, class: "nav-link" do %>
+        <div class="card mb-3">
+          <div class="card-body st">
+            <h5 class="card-title text-center">N° <%= comanda.numero %></h5>
+            <h6 class="card-subtitle mb-2 text-body-secondary text-center"><%= comanda.status %></h6>
+          </div>
+        </div>
+      <% end %>
+    </div>
   <% end %>
 </div>
 
-<%= link_to "New comanda", new_comanda_path %>
+<%= link_to new_comanda_path, class: "btn btn-primary floating-btn" do %>
+  <i class="bi bi-plus fs-1"></i>
+<% end %>
+
+<p style="color: green"><%= notice %></p>
+</div>

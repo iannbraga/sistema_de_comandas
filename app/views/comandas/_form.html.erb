@@ -1,22 +1,32 @@
-<%= form_with(model: comanda) do |form| %>
-  <% if comanda.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(comanda.errors.count, "error") %> prohibited this comanda from being saved:</h2>
+<div class="container fs-5" style="padding-top: 60px;padding-right: 60px;">
+  <%= form_with(model: comanda) do |form| %>
+    <% if comanda.errors.any? %>
+      <div style="color: red">
+        <h2><%= pluralize(comanda.errors.count, "error") %> prohibited this comanda from being saved:</h2>
 
-      <ul>
-        <% comanda.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+        <ul>
+          <% comanda.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    
+    <div class="row ps-0">
+      <div class="col-sm-12 col-md-2 col-lg-1 col-xl-1 text-end">
+          <%= form.label :numero, "Número", class: "form-label" %>
+      </div>
+      <div class="col-2">
+          <%= form.number_field :numero, class: "form-control" %>
+      </div>
+
+      <div class="col-3">
+        <%= form.submit "Cadastrar", class: "btn btn-primary w-100" %>
+      </div>
+
+      <div class="col-3">
+        <%= link_to "Cancelar", comandas_path, class: "btn btn-danger w-100" %>
+      </div>
     </div>
   <% end %>
-
-  <div>
-    <%= form.label :numero, style: "display: block" %>
-    <%= form.number_field :numero %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>

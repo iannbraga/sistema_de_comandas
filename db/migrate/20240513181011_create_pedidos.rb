@@ -4,6 +4,7 @@ class CreatePedidos < ActiveRecord::Migration[7.0]
       t.references :comanda, null: false, foreign_key: true
       t.date :data
       t.time :hora
+      t.decimal :total
       t.string :observacoes
 
       t.timestamps

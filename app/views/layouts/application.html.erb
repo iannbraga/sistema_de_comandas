@@ -6,12 +6,16 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <script src="https://kit.fontawesome.com/4bad48d913.js" crossorigin="anonymous"></script>
     <%= javascript_include_tag "jquery" %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
   </head>
 
   <body>
-    <%= yield %>
+    <%= render "partials/navbar" %>
+    <div class="container-fluid p-5">
+      <%= yield %>
+    </div>
   </body>
 </html>

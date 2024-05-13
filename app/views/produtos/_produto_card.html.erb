@@ -1,0 +1,33 @@
+<div class="card" style="width: 15rem;">
+    <div class="card-header text-center" style="padding: 60px;">
+        <i class="<%= produto.icone %>" style="font-size: 5rem;"></i>
+    </div>
+    <div class="card-body text-center">
+        <p class="card-text text-center">
+        <span class="badge bg-primary w-75 fs-6">
+            <%= produto.categoria %>
+        </span>
+        </p>
+
+        <p class="fs-5">
+        <span class="card-title">
+            <%= produto.nome %>
+        </span>
+
+        <span class="card-subtitle mb-2 text-muted">
+            <%= produto.descricao %>
+        </span>
+        </p>
+        <hr>
+        <p class="card-text text-success fs-5">
+            R$ <%= number_with_precision(produto.preco, precision: 2) %>
+        </p>
+        <p class="text-secondary">
+            Estoque: <%= produto.estoque %>
+        </p>
+
+        <p>
+            <%= yield %>
+        </p>
+    </div>
+</div>
