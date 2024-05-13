@@ -22,6 +22,8 @@ class ComandasController < ApplicationController
   # POST /comandas or /comandas.json
   def create
     @comanda = Comanda.new(comanda_params)
+    @comanda.total = 0
+    @comanda.status = 'Livre'
 
     respond_to do |format|
       if @comanda.save
@@ -65,6 +67,6 @@ class ComandasController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def comanda_params
-      params.require(:comanda).permit(:numero, :total)
+      params.require(:comanda).permit(:numero, :status, :total)
     end
 end
