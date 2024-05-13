@@ -10,12 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_05_13_181035) do
+ActiveRecord::Schema[7.0].define(version: 2024_05_13_182253) do
   create_table "comandas", force: :cascade do |t|
     t.integer "numero"
     t.decimal "total"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "status"
   end
 
   create_table "items", force: :cascade do |t|
