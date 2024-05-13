@@ -73,3 +73,7 @@ group :test do
   gem "selenium-webdriver"
 
 end
+
+gem "nested_form", "~> 0.3.2"
+
+gem "jquery-rails", "~> 4.6"
