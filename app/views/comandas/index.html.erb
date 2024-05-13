@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Comandas</h1>
+
+<div id="comandas">
+  <% @comandas.each do |comanda| %>
+    <%= render comanda %>
+    <p>
+      <%= link_to "Show this comanda", comanda %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New comanda", new_comanda_path %>

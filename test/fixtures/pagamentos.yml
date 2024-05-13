@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  comanda: one
+  metodo_pagamento: MyString
+  valor_total_pago: 9.99
+  troco: 9.99
+  data: 2024-05-13
+  hora: 2024-05-13 15:10:35
+
+two:
+  comanda: two
+  metodo_pagamento: MyString
+  valor_total_pago: 9.99
+  troco: 9.99
+  data: 2024-05-13
+  hora: 2024-05-13 15:10:35

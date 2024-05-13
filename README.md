@@ -4,7 +4,7 @@
    - Número (identificador único da comanda)
    - Total (valor total dos pedidos na comanda)
    - Lista de Pedidos (para armazenar os pedidos feitos nessa comanda)
-rails generate model Comanda numero:integer total:decimal 
+rails g scaffold Comanda numero:integer total:decimal 
 
 class Comanda < ApplicationRecord
   has_many :pedidos
@@ -18,7 +18,7 @@ end
    - Data e hora do pedido
    - Status (em andamento, concluído, cancelado, etc.)
    - Observações (por exemplo, preferências do cliente)
-rails generate model Pedido comanda:references data:date hora:time observacoes
+rails g scaffold Pedido comanda:references data:date hora:time observacoes
 
 class Pedido < ApplicationRecord
   belongs_to :comanda
@@ -33,7 +33,7 @@ end
    - Preço unitário
    - Subtotal
    - Observações (por exemplo, ingredientes extras)
-rails generate model Item pedido:references produto:references quantidade:integer preco_unitario:decimal subtotal:decimal observacoes
+rails g scaffold Item pedido:references produto:references quantidade:integer preco_unitario:decimal subtotal:decimal observacoes
 
 class Item < ApplicationRecord
   belongs_to :pedido
@@ -48,7 +48,7 @@ end
    - Estoque
    - Categoria (por exemplo, bebidas, petiscos, pratos principais)
 
-rails generate model Produto nome:string descricao:text preco:decimal estoque:integer categoria
+rails g scaffold Produto nome:string descricao:text preco:decimal estoque:integer categoria
 
 class Produto < ApplicationRecord
   has_many :itens
@@ -61,7 +61,7 @@ end
    - Valor total pago
    - Troco (apenas para pagamento em dinheiro)
    - Data e hora do pagamento
-rails generate model Pagamento comanda:references metodo_pagamento:string valor_total_pago:decimal troco:decimal data:date hora:time
+rails g scaffold Pagamento comanda:references metodo_pagamento:string valor_total_pago:decimal troco:decimal data:date hora:time
 
 class Pagamento < ApplicationRecord
   belongs_to :comanda
