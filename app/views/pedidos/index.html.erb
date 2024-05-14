@@ -4,7 +4,7 @@
 
 <div id="pedidos">
   <% @pedidos.each do |pedido| %>
-    <% #= render pedido %>
+    <%= render pedido %>
     <p>
       <%= link_to "Show this pedido", pedido %>
     </p>

@@ -1,22 +1,29 @@
+<%# app/views/pedidos/_pedido.html.erb %> 
 <div id="<%= dom_id pedido %>">
-  <p>
-    <strong>Comanda:</strong>
-    <%= pedido.comanda_id %>
-  </p>
-
-  <p>
-    <strong>Data:</strong>
-    <%= pedido.data %>
-  </p>
-
-  <p>
-    <strong>Hora:</strong>
-    <%= pedido.hora %>
-  </p>
-
-  <p>
-    <strong>Observacoes:</strong>
-    <%= pedido.observacoes %>
-  </p>
-
+  <div class="row">
+    <% if request.path != polymorphic_path(pedido.comanda) %>
+      <div class="col-12 p-2">
+        <%= label_tag "comanda", "Comanda", class: "form-label" %>
+        <%= number_field_tag "comanda", pedido.comanda.numero, class: "form-control", disabled: true, readonly: true, style: "width: 80px" %>
+      </div>
+    <% end %>
+    <% if request.path != polymorphic_path(pedido.comanda) %>
+    <div class="col-12 p-2">
+      <h3>Itens</h3>
+    </div>
+    <% end %>
+    <div class="col-9 p-2">
+      <div id="itens">
+        <% pedido.itens.each do |item| %>
+          <%= render "pedidos/item", item: item %>
+        <% end %>
+      </div>
+    </div>
+    <% if request.path != polymorphic_path(pedido.comanda) %>
+      <div class="col-12 p-2">
+        <%= label_tag "total", "Total", class: "form-label" %>
+        <%= number_field_tag "total", pedido.total, class: "form-control w-50", disabled: true, readonly: true %>
+      </div>
+    <% end %>
+  </div>
 </div>

@@ -39,7 +39,6 @@ $(document).ready(function() {
     var selectElement = nestedField.find('.produto-select');
     var precoElement = nestedField.find('.produto-preco');
     var quantidadeElement = nestedField.find('.quantidade');
-    var totalElement = $('.total-venda');
     var subtotalElement = nestedField.find('.subtotal'); // Adicionado
 
     var produto_select = selectElement.val();
@@ -67,30 +66,23 @@ $(document).ready(function() {
     var quantidade = parseFloat(quantidadeElement.val());
 
     if (!isNaN(preco_atual) && !isNaN(quantidade)) {
-      var total_venda = preco_atual * quantidade;
-      totalElement.val(total_venda); // Atualiza o total geral
-
-      // Calcular o subtotal e atribuir ao campo subtotal
       var subtotal = preco_atual * quantidade;
-      subtotalElement.val(subtotal);
+      subtotalElement.val(subtotal); // Atualiza o subtotal
+
+      atualizarTotalGeral(); // Atualizar o total geral
     } else {
-      console.log('Erro ao calcular o total');
+      console.log('Erro ao calcular o subtotal');
     }
   }
 
   function calcularTotalGeral() {
     var totalGeral = 0;
 
-    // Somar os totais de todos os itens
-    $('.nested-fields').each(function(index, nestedField) {
-      var precoElement = $(nestedField).find('.produto-preco');
-      var quantidadeElement = $(nestedField).find('.quantidade');
-
-      var preco_produto = parseFloat(precoElement.val());
-      var quantidade = parseFloat(quantidadeElement.val());
-
-      if (!isNaN(preco_produto) && !isNaN(quantidade)) {
-        totalGeral += preco_produto * quantidade;
+    // Somar os subtotais de todos os itens
+    $('.subtotal').each(function(index, subtotalElement) {
+      var subtotal = parseFloat($(subtotalElement).val());
+      if (!isNaN(subtotal)) {
+        totalGeral += subtotal;
       }
     });
 
@@ -107,12 +99,11 @@ $(document).ready(function() {
     calcularTotalVenda($(nestedField));
   });
 
-  // Atualizar os totais ao alterar a seleção, quantidade ou preço unitário
+  // Atualizar os subtotais ao alterar a seleção, quantidade ou preço unitário
   $(document).on('change input', '.produto-select, .quantidade, .produto-preco', function() {
     var nestedField = $(this).closest('.nested-fields');
     var isPrecoUnitarioChanged = $(this).hasClass('produto-preco');
     calcularTotalVenda(nestedField, isPrecoUnitarioChanged);
-    atualizarTotalGeral(); // Atualizar o total geral após a mudança
   });
 
   // Atualizar o total ao remover um item
@@ -120,6 +111,5 @@ $(document).ready(function() {
     atualizarTotalGeral();
   });
 });
-
 
 </script>

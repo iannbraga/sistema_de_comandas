@@ -26,7 +26,7 @@
     <% if @comanda.pedidos.empty? %>
       <p class="pb-3 text-center">Não tem pedidos.</p>
     <% else %>
-      <% @comanda.pedidos.each do |pedido| %>
+      # <% @comanda.pedidos.each do |pedido| %>
         <%= render "pedidos/pedido", pedido: pedido %>
       <% end %>
     <% end %>

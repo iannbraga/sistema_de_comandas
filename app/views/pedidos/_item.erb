@@ -1,0 +1,22 @@
+<% # app/views/pedidos/_item.html.erb %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-3 p-2">
+      <%= label_tag "produto_nome", "Produto", class: "form-label" %>
+      <%= text_field_tag "pedido[produto_nome]", item.produto.nome, class: "form-control", disabled: true, readonly: true %>
+    </div>
+    <div class="col-3 p-2">
+      <%= label_tag "preco_unitario", "Preço unitário", class: "form-label" %>
+      <%= number_field_tag "pedido[preco_unitario]", item.preco_unitario, class: "form-control", disabled: true, readonly: true %>
+    </div>
+    <div class="col-2 p-2">
+      <%= label_tag "quantidade", "Quantidade", class: "form-label" %>
+      <%= number_field_tag "pedido[quantidade]", item.quantidade, class: "form-control", disabled: true, readonly: true %>
+    </div>
+    <div class="col-2 p-2">
+      <%= label_tag "subtotal", "Subtotal", class: "form-label" %>
+      <%= number_field_tag "pedido[subtotal]", item.subtotal, class: "form-control", disabled: true, readonly: true %>
+    </div>
+  </div>
+</div>
+

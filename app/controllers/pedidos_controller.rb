@@ -14,8 +14,8 @@ class PedidosController < ApplicationController
   def new
     @pedido = Pedido.new
     @pedido.itens.build
-
-    @pedido.comanda = Comanda.find(params[:comanda_id]) unless params[:comanda_id].nil?
+    @comanda = Comanda.find(params[:comanda_id]) unless params[:comanda_id].nil?
+    @pedido.comanda = @comanda
     @pedido.data = Date.today
     @pedido.hora = Time.now
   end
@@ -28,13 +28,14 @@ class PedidosController < ApplicationController
   def create
     @pedido = Pedido.new(pedido_params)
 
-    @pedido.comanda = Comanda.find(params[:comanda_id])
     @pedido.data = Date.today
     @pedido.hora = Time.now
-
+    
     respond_to do |format|
       if @pedido.save
-        format.html { redirect_to pedido_url(@pedido), notice: "Pedido was successfully created." }
+        @pedido.comanda.atualizar_total
+
+        format.html { redirect_to comanda_path(@pedido.comanda), notice: "Pedido was successfully created." }
         format.json { render :show, status: :created, location: @pedido }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -47,7 +48,7 @@ class PedidosController < ApplicationController
   def update
     respond_to do |format|
       if @pedido.update(pedido_params)
-        format.html { redirect_to pedido_url(@pedido), notice: "Pedido was successfully updated." }
+        format.html { redirect_to comanda_path(@pedido.comanda), notice: "Pedido was successfully updated." }
         format.json { render :show, status: :ok, location: @pedido }
       else
         format.html { render :edit, status: :unprocessable_entity }
