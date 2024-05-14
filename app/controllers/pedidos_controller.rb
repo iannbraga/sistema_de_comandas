@@ -8,13 +8,6 @@ class PedidosController < ApplicationController
 
   # GET /pedidos/1 or /pedidos/1.json
   def show
-    @itens_agrupados = {}
-
-    # Para cada item no pedido, agrupa os itens pelo ID do produto
-    @pedido.itens.each do |item|
-      @itens_agrupados[item.produto_id] ||= []
-      @itens_agrupados[item.produto_id] << item
-    end
   end
 
   # GET /pedidos/new

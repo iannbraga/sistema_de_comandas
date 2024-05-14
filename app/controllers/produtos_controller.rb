@@ -3,8 +3,8 @@ class ProdutosController < ApplicationController
 
   # GET /produtos or /produtos.json
   def index
-    produtos = Produto.all
-    @produtos_por_categoria = produtos.group_by(&:categoria)
+    @produtos = Produto.all
+    @produtos_por_categoria = @produtos.group_by(&:categoria)
   end
 
   # GET /produtos/1 or /produtos/1.json
