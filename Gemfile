@@ -78,3 +78,5 @@ end
 gem "jquery-rails", "~> 4.6"
 
 gem "cocoon", "~> 1.2"
+
+gem "pry", "~> 0.14.2"
