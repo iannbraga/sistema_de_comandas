@@ -21,12 +21,11 @@ class ComandasController < ApplicationController
 
   # POST /comandas or /comandas.json
   def create
-    @comanda = Comanda.new(comanda_params)
-    @comanda.total = 0
-    @comanda.status = 'Livre'
+    comanda_service = ComandaService.new(comanda_params)
+    @comanda = comanda_service.create_comanda
 
     respond_to do |format|
-      if @comanda.save
+      if @comanda
         format.html { redirect_to comanda_url(@comanda), notice: "Comanda was successfully created." }
         format.json { render :show, status: :created, location: @comanda }
       else
@@ -38,8 +37,10 @@ class ComandasController < ApplicationController
 
   # PATCH/PUT /comandas/1 or /comandas/1.json
   def update
+    comanda_service = ComandaService.new(comanda_params)
+
     respond_to do |format|
-      if @comanda.update(comanda_params)
+      if comanda_service.update_comanda(@comanda, comanda_params)
         format.html { redirect_to comanda_url(@comanda), notice: "Comanda was successfully updated." }
         format.json { render :show, status: :ok, location: @comanda }
       else
@@ -51,7 +52,8 @@ class ComandasController < ApplicationController
 
   # DELETE /comandas/1 or /comandas/1.json
   def destroy
-    @comanda.destroy
+    comanda_service = ComandaService.new(nil)
+    comanda_service.destroy_comanda(@comanda)
 
     respond_to do |format|
       format.html { redirect_to comandas_url, notice: "Comanda was successfully destroyed." }
@@ -60,13 +62,14 @@ class ComandasController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_comanda
-      @comanda = Comanda.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def comanda_params
-      params.require(:comanda).permit(:numero, :status, :total)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_comanda
+    @comanda = Comanda.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def comanda_params
+    params.require(:comanda).permit(:numero, :status, :total)
+  end
 end

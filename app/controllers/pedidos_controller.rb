@@ -34,7 +34,6 @@ class PedidosController < ApplicationController
     respond_to do |format|
       if @pedido.save
         @pedido.comanda.atualizar_total
-        @pedido.comanda.atualizar_status 
         
         format.html { redirect_to comanda_path(@pedido.comanda), notice: "Pedido was successfully created." }
         format.json { render :show, status: :created, location: @pedido }
