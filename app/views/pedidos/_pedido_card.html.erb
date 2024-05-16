@@ -1,0 +1,28 @@
+<div class="card">
+  <div class="card-body">
+    <% if request.path != polymorphic_path(pedido.comanda) %>
+      <div class="mb-3">
+        <%= label_tag "comanda", "Comanda", class: "form-label" %>
+        <%= number_field_tag "comanda", pedido.comanda.numero, class: "form-control", disabled: true, readonly: true, style: "width: 80px" %>
+      </div>
+    <% end %>
+    <% if request.path != polymorphic_path(pedido.comanda) %>
+      <div class="mb-3">
+        <h5>Itens</h5>
+      </div>
+    <% end %>
+    <div class="mb-3">
+      <ul class="list-group">
+        <% pedido.itens.each do |item| %>
+          <li class="list-group-item"><%= item.produto.nome %> - <%= item.quantidade %></li>
+        <% end %>
+      </ul>
+    </div>
+    <% if request.path != polymorphic_path(pedido.comanda) %>
+      <div class="mb-3">
+        <%= label_tag "total", "Total", class: "form-label" %>
+        <%= number_field_tag "total", pedido.total, class: "form-control", disabled: true, readonly: true %>
+      </div>
+    <% end %>
+  </div>
+</div>

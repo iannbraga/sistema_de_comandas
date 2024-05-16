@@ -1,13 +1,14 @@
-<p style="color: green"><%= notice %></p>
+<%# app/views/pedidos/index.html.erb %>
 
-<h1>Pedidos</h1>
+<h1 class="mb-4">Lista de Pedidos</h1>
 
-<div id="pedidos">
+<div class="row">
   <% @pedidos.each do |pedido| %>
-    <%= render pedido %>
-    <p>
-      <%= link_to "Show this pedido", pedido %>
-    </p>
+    <div class="col-md-4 mb-4">
+      <%= link_to pedido, class: 'nav-link' do %>
+        <%= render 'pedido_card', pedido: pedido %>
+      <% end %>
+    </div>
   <% end %>
 </div>
 
