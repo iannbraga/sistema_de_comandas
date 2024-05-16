@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card" style="width: 18rem;">
   <div class="card-body">
     <% if request.path != polymorphic_path(pedido.comanda) %>
       <div class="mb-3">
@@ -24,5 +24,8 @@
         <%= number_field_tag "total", pedido.total, class: "form-control", disabled: true, readonly: true %>
       </div>
     <% end %>
+    <div class="d-flex">
+      <%= link_to 'Visualizar', pedido, class: 'btn btn-primary text-center' %>
+    </div>
   </div>
 </div>

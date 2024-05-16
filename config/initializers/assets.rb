@@ -9,6 +9,7 @@ Rails.application.config.assets.paths << Rails.root.join("node_modules/bootstrap
 
 # JQuery 
 Rails.application.config.assets.precompile += %w( jquery.js )
+Rails.application.config.assets.precompile += %w( masonry.pkgd.min.js )
 
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in the app/assets
