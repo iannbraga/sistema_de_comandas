@@ -13,19 +13,9 @@
     <% end %>
 
     <div class="row nested-fields">
-      <div class="col-3 pt-4 field">
-        <%= form.label :codigo, class: "form-label" %>
-        <%= form.number_field :codigo, class: "form-control" %>
-      </div>
-
       <div class="col-6 pt-4 field">
         <%= form.label :nome, class: "form-label" %>
         <%= form.text_field :nome, class: "form-control" %>
-      </div>
-
-      <div class="col-3 pt-4 field">
-        <%= form.label :categoria, class: "form-label" %>
-        <%= form.text_field :categoria, class: "form-control" %>
       </div>
 
       <div class="col-6 pt-4 field">
@@ -33,12 +23,17 @@
         <%= form.text_field :descricao, class: "form-control" %>
       </div>
 
-      <div class="col-3 pt-4 field">
+      <div class="col-4 pt-4 field">
+        <%= form.label :categoria, class: "form-label" %>
+        <%= form.text_field :categoria, class: "form-control" %>
+      </div>
+
+      <div class="col-4 pt-4 field">
         <%= form.label :preco, "Preço", class: "form-label" %>
         <%= form.text_field :preco, class: "form-control" %>
       </div>
 
-      <div class="col-3 pt-4 field">
+      <div class="col-4 pt-4 field">
         <%= form.label :estoque, class: "form-label" %>
         <%= form.number_field :estoque, class: "form-control" %>
       </div>

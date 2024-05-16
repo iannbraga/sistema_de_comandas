@@ -2,14 +2,34 @@
 
 <h1 class="mb-4">Lista de Pedidos</h1>
 
-<div class="row">
-  <% @pedidos.each do |pedido| %>
-    <div class="col mb-4">
-      <%= render 'pedido_card', pedido: pedido %>
-    </div>
-  <% end %>
-</div>
+<div class="grid" id="pedidos-grid">
+    <% @pedidos.each do |pedido| %>
+      <div class="grid-item pt-4">
+        <%= render 'pedido_card', pedido: pedido %>
+      </div>
+    <% end %>
+  </div>
 
 <%= link_to new_pedido_path, class: "btn btn-primary floating-btn" do %>
   <i class="bi bi-plus fs-1"></i>
 <% end %>
+
+
+<script>
+document.addEventListener("turbo:load", function() {
+  // Selecione o contêiner da grade
+  var grid = document.getElementById('pedidos-grid');
+  // Inicialize o Masonry
+  var masonry = new Masonry(grid, {
+    itemSelector: '.grid-item', // Seletor para os elementos de pedido
+    columnWidth: '.grid-item', // Largura das colunas
+    gutter: 20 // Espaçamento entre os elementos
+  });
+
+  // Aguarde o carregamento de todas as imagens dentro da grade
+  imagesLoaded(grid).on('progress', function() {
+    // Recalcula a posição dos itens após o carregamento de imagens
+    masonry.layout();
+  });
+});
+</script>

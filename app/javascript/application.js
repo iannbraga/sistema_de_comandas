@@ -3,3 +3,8 @@ import "@hotwired/turbo-rails"
 import "./controllers"
 import * as bootstrap from "bootstrap"
 import "@nathanvda/cocoon"
+
+import $ from 'jquery';
+window.jQuery = $;
+window.$ = $;
+
