@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_05_13_184514) do
+ActiveRecord::Schema[7.0].define(version: 2024_05_20_224142) do
   create_table "comandas", force: :cascade do |t|
     t.integer "numero"
     t.string "status"
@@ -20,7 +20,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_13_184514) do
   end
 
   create_table "itens", force: :cascade do |t|
-    t.integer "pedido_id", null: false
+    t.integer "pedido_id"
     t.integer "produto_id", null: false
     t.integer "quantidade"
     t.decimal "preco_unitario"
@@ -28,8 +28,10 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_13_184514) do
     t.string "observacoes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "venda_id"
     t.index ["pedido_id"], name: "index_itens_on_pedido_id"
     t.index ["produto_id"], name: "index_itens_on_produto_id"
+    t.index ["venda_id"], name: "index_itens_on_venda_id"
   end
 
   create_table "pagamentos", force: :cascade do |t|
@@ -66,8 +68,19 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_13_184514) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "vendas", force: :cascade do |t|
+    t.date "data"
+    t.time "hora"
+    t.string "cliente"
+    t.string "status"
+    t.decimal "total"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   add_foreign_key "itens", "pedidos"
   add_foreign_key "itens", "produtos"
+  add_foreign_key "itens", "vendas"
   add_foreign_key "pagamentos", "comandas"
   add_foreign_key "pedidos", "comandas"
 end

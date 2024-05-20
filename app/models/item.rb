@@ -1,4 +1,4 @@
 class Item < ApplicationRecord
-  belongs_to :pedido
-  belongs_to :produto
+  belongs_to :pedido, optional: true
+  belongs_to :produto, optional: true
 end
