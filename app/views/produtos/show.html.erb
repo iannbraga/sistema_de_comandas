@@ -1,10 +1,12 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @produto %>
-
-<div>
-  <%= link_to "Edit this produto", edit_produto_path(@produto) %> |
-  <%= link_to "Back to produtos", produtos_path %>
-
-  <%= button_to "Destroy this produto", @produto, method: :delete %>
-</div>
+<%= render "produto_card", produto: @produto do %>
+    <ul class="list-unstyled list-inline">
+      <li class="list-inline-item">
+        <%= link_to "", edit_produto_path(@produto), class: "btn btn-warning mt-2 fs-5 me-5 bi bi-pencil" %>
+      </li>
+      <li class="list-inline-item">
+        <%= button_to "", @produto, method: :delete, class: "btn btn-danger  mt-2 fs-5 me-5 bi bi-trash" %>
+      </li>
+    </ul>
+<% end %>

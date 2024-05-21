@@ -1,4 +1,4 @@
-<div class="card" style="width: 15rem;">
+<div class="card" style="width: 15rem; height: 480px;">
     <div class="card-header text-center" style="padding: 60px;">
         <i class="<%= produto.icone %>" style="font-size: 5rem;"></i>
     </div>
@@ -26,8 +26,13 @@
             Estoque: <%= produto.estoque %>
         </p>
 
-        <p>
-            <%= yield %>
-        </p>
+        <div class="row">
+            <div class="col-6 ps-5">
+                <%= link_to "", edit_produto_path(produto), class: "btn btn-warning mt-2 fs-5 me-5 bi bi-pencil" %>
+            </div>
+            <div class="col-6 ps-3">
+                <%= button_to "", produto, method: :delete, class: "btn btn-danger  mt-2 fs-5 me-5 bi bi-trash" %>
+            </div>
+        </div>
     </div>
 </div>
