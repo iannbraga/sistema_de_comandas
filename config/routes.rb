@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   resources :itens
   resources :pagamentos
   resources :produtos
-  resources :items
   resources :pedidos
   resources :comandas
   resources :vendas
