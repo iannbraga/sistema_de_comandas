@@ -1,18 +1,16 @@
-<%# app/views/pedidos/index.html.erb %>
+<% # app/views/pedidos/index.html.erb %>
 
-<h1 class="mb-4">Lista de Pedidos</h1>
+<h1 class="display-5">Pedidos</h1>
 
 <div class="grid" id="pedidos-grid">
     <% @pedidos.each do |pedido| %>
       <div class="grid-item pt-4">
-        <%= render 'pedido_card', pedido: pedido %>
+        <%= render "pedido_card", pedido: pedido %>
       </div>
     <% end %>
   </div>
 
-<%= link_to new_pedido_path, class: "btn btn-primary floating-btn" do %>
-  <i class="bi bi-plus fs-1"></i>
-<% end %>
+<%= render "partials/btn_floating", link: new_pedido_path, formato: "circle", cor: "primary" %>
 
 
 <script>

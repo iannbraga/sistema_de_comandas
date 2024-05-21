@@ -1,21 +1,59 @@
-<h1 class="display-5">Produtos</h1>
+<h1 class="display-5 mb-5">Produtos</h1>
+
+<!-- Lista de Categorias no Topo -->
+<div class="row mb-4">
+  <hr>
+  <% @categorias.each do |categoria| %>
+    <div class="col pb-3">
+      <a href="#<%= categoria.parameterize %>" class="nav-link"><%= categoria %></a>
+    </div>
+  <% end %>
+  <hr>
+</div>
 
 <div id="produtos" class="row">
   <% @produtos_por_categoria.each do |categoria, produtos| %>
-    <h6 class="text-center pt-3 display-6 fs-3"><%= categoria %></h5>
-    <hr>
-    <% produtos.each do |produto| %>
-      <div class="col-2 col-sm-12 col-md-3 col-lg-2 col-xl-2 d-flex justify-content-center p-3">
-        <%#= link_to produto, class: "nav-link" do %>
-          <%= render "produto_card", produto: produto %>
-        <%# end %>
+    <div class="col-12">
+      <h6 class="text-center pt-4 display-6 fs-3 anchor-offset" id="<%= categoria.parameterize %>"><%= categoria %></h6>
+      <div class="row">
+        <% produtos.each do |produto| %>
+          <div class="col-2 col-sm-12 col-md-3 col-lg-2 col-xl-2 d-flex justify-content-center p-3">
+              <%= render "produto_card", produto: produto %>
+          </div>
+        <% end %>
       </div>
-    <% end %>
+    </div>
   <% end %>
 </div>
 
-<%= link_to new_produto_path, class: "btn btn-primary floating-btn" do %>
-  <i class="bi bi-plus fs-1"></i>
-<% end %>
+<%= render "partials/btn_floating", link: new_produto_path, formato: "circle", cor: "primary" %>
+
+<%= render "partials/btn_back_to_top", link: "#navbar", formato: "circle", cor: "dark" %>
 
 <p style="color: green"><%= notice %></p>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const offset = 100; // ajuste este valor conforme necessário
+  const anchorLinks = document.querySelectorAll('a[href^="#"]');
+
+  anchorLinks.forEach(link => {
+    link.addEventListener("click", function(event) {
+      event.preventDefault();
+      const targetId = this.getAttribute("href").substring(1);
+      const targetElement = document.getElementById(targetId);
+
+      if (targetElement) {
+        const elementPosition = targetElement.offsetTop;
+        const offsetPosition = elementPosition - offset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth"
+        });
+      }
+    });
+  });
+});
+</script>

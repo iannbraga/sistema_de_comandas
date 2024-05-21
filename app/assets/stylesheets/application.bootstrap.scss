@@ -2,12 +2,12 @@
 @import 'bootstrap-icons/font/bootstrap-icons';
 
 /* Estilo para o botão flutuante */
-.floating-btn {
+.floating-btn-circle {
     position: fixed;
-    bottom: 40px;
-    right: 60px;
     border: none;
     border-radius: 50%;
+    bottom: 40px;
+    right: 60px;
     width: 60px;
     height: 60px;
     text-align: center;
@@ -31,6 +31,6 @@
 }
 
 /* Efeito de hover */
-.floating-btn:hover {
-    background-color: #0056b3;
-}
+// .floating-btn:hover {
+//     background-color: #0056b3;
+// }

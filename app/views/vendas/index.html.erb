@@ -9,6 +9,4 @@
   <% end %>
 </div>
 
-<%= link_to new_venda_path, class: "btn btn-primary floating-btn" do %>
-  <i class="bi bi-plus fs-1"></i>
-<% end %>
+<%= render "partials/btn_floating", link: new_venda_path, formato: "circle", cor: "primary" %>
