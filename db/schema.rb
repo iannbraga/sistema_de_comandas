@@ -13,8 +13,9 @@
 ActiveRecord::Schema[7.0].define(version: 2024_05_20_224142) do
   create_table "comandas", force: :cascade do |t|
     t.integer "numero"
-    t.string "status"
-    t.decimal "total"
+    t.string "nome", default: ""
+    t.string "status", default: "Livre"
+    t.decimal "total", default: "0.0"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

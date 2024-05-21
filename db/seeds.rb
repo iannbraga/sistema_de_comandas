@@ -25,18 +25,6 @@ outros = [
 
 cervejas = [
   {
-    nome: "Ficha de Sinuca",
-    preco: 2.5,
-    estoque: 0,
-    categoria: "Outros",
-  },
-  {
-    nome: "Ficha de Música",
-    preco: 1.0,
-    estoque: 0,
-    categoria: "Outros",
-  },
-  {
     nome: "Antártica 269ml",
     preco: 4.0,
     estoque: 0,
@@ -219,35 +207,35 @@ bebidas = [
     preco: 0,
     estoque: 0,
     categoria: "Bebidas",
-    icone: "fa-solid fa-water",
+    icone: "fa-solid fa-bottle-water",
   },
   {
     nome: "Coca KS",
     preco: 0,
     estoque: 0,
     categoria: "Bebidas",
-    icone: "fa-solid fa-water",
+    icone: "fa-solid fa-bottle-water",
   },
   {
     nome: "Coca 600ml",
     preco: 0,
     estoque: 0,
     categoria: "Bebidas",
-    icone: "fa-solid fa-water",
+    icone: "fa-solid fa-bottle-water",
   },
   {
     nome: "Coca 1L",
     preco: 0,
     estoque: 0,
     categoria: "Bebidas",
-    icone: "fa-solid fa-water",
+    icone: "fa-solid fa-bottle-water",
   },
   {
     nome: "Coca 2L",
     preco: 0,
     estoque: 0,
     categoria: "Bebidas",
-    icone: "fa-solid fa-water",
+    icone: "fa-solid fa-bottle-water",
   },
   # Guaraná
   {
@@ -255,14 +243,14 @@ bebidas = [
     preco: 0,
     estoque: 0,
     categoria: "Bebidas",
-    icone: "fa-solid fa-water",
+    icone: "fa-solid fa-bottle-water",
   },
   {
     nome: "Guaraná 2L",
     preco: 0,
     estoque: 0,
     categoria: "Bebidas",
-    icone: "fa-solid fa-water",
+    icone: "fa-solid fa-bottle-water",
   },
   # Sukita
   {
@@ -270,7 +258,7 @@ bebidas = [
     preco: 0,
     estoque: 0,
     categoria: "Bebidas",
-    icone: "fa-solid fa-water",
+    icone: "fa-solid fa-bottle-water",
   },
   # Tônica
   {
@@ -278,7 +266,7 @@ bebidas = [
     preco: 0,
     estoque: 0,
     categoria: "Bebidas",
-    icone: "fa-solid fa-water",
+    icone: "fa-solid fa-bottle-water",
   },
   # Gatorede
   {
@@ -286,7 +274,7 @@ bebidas = [
     preco: 0,
     estoque: 0,
     categoria: "Bebidas",
-    icone: "fa-solid fa-water",
+    icone: "fa-solid fa-bottle-water",
   },
   # H2O
   {
@@ -294,7 +282,7 @@ bebidas = [
     preco: 0,
     estoque: 0,
     categoria: "Bebidas",
-    icone: "fa-solid fa-water",
+    icone: "fa-solid fa-bottle-water",
   },
   # Suco
   {
@@ -302,7 +290,7 @@ bebidas = [
     preco: 0,
     estoque: 0,
     categoria: "Bebidas",
-    icone: "fa-solid fa-water",
+    icone: "fa-solid fa-bottle-water",
   },
   # Água de coco
   {
@@ -310,7 +298,7 @@ bebidas = [
     preco: 0,
     estoque: 0,
     categoria: "Bebidas",
-    icone: "fa-solid fa-water",
+    icone: "fa-solid fa-bottle-water",
   },
   # Energéticos
   {
@@ -318,21 +306,21 @@ bebidas = [
     preco: 0,
     estoque: 0,
     categoria: "Bebidas",
-    icone: "fa-solid fa-water",
+    icone: "fa-solid fa-bottle-water",
   },
   {
     nome: "Redbull",
     preco: 0,
     estoque: 0,
     categoria: "Bebidas",
-    icone: "fa-solid fa-water",
+    icone: "fa-solid fa-bottle-water",
   },
   {
     nome: "FireNigth",
     preco: 0,
     estoque: 0,
     categoria: "Bebidas",
-    icone: "fa-solid fa-water",
+    icone: "fa-solid fa-bottle-water",
   },
 ]
 
@@ -417,7 +405,7 @@ doses = [
     icone: "fa-solid fa-whiskey-glass",
   },
   {
-    nome: "Cachaça de Pimenta biquinho",
+    nome: "Cachaça de Pimenta",
     preco: 4,
     estoque: 0,
     categoria: "Dose",
@@ -432,28 +420,28 @@ salgados = [
     preco: 7.00,
     estoque: 0,
     categoria: "Salgados",
-    icone: "fa-solid fa-utensils",
+    icone: "fa-solid fa-cookie-bite",
   },
   {
     nome: "Micos",
     preco: 3.00,
     estoque: 0,
     categoria: "Salgados",
-    icone: "fa-solid fa-utensils",
+    icone: "fa-solid fa-cookie-bite",
   },
   {
     nome: "Micão",
     preco: 4.00,
     estoque: 0,
     categoria: "Salgados",
-    icone: "fa-solid fa-utensils",
+    icone: "fa-solid fa-cookie-bite",
   },
   {
     nome: "Torresmo",
     preco: 7.00,
     estoque: 0,
     categoria: "Salgados",
-    icone: "fa-solid fa-utensils",
+    icone: "fa-solid fa-cookie-bite",
   },
 ]
 
@@ -487,21 +475,14 @@ porcoes = [
     icone: "fa-solid fa-utensils",
   },
   {
-    nome: "Frango à passarinho c/ fritas",
-    preco: 40,
+    nome: "Frango à passarinho c/ calabresa",
+    preco: 42,
     estoque: 0,
     categoria: "Porções",
     icone: "fa-solid fa-utensils",
   },
   {
-    nome: "Frango à passarinho c/ fritas e calabresa",
-    preco: 55,
-    estoque: 0,
-    categoria: "Porções",
-    icone: "fa-solid fa-utensils",
-  },
-  {
-    nome: "Frango à passarinho c/ fritas, calabresa e cheddar",
+    nome: "Frango à passarinho completo",
     preco: 55,
     estoque: 0,
     categoria: "Porções",
@@ -546,7 +527,7 @@ porcoes.each do |item|
   Produto.create(item)
 end
 
-(1..20).each do |i|
+(1..30).each do |i|
   p "Comanda N° #{i}"
   Comanda.create({
     numero: i,
@@ -554,3 +535,18 @@ end
     status: "Livre",
   })
 end
+
+Comanda.find_by(numero: 6).update(nome: "Sávio", status: "Ocupada")
+Comanda.find_by(numero: 23).update(nome: "Zé", status: "Ocupada")
+Comanda.create([
+  {
+    numero: 69,
+    nome: "Vitoria",
+    status: "Ocupada",
+  },
+  {
+    numero: 420,
+    nome: "Iann",
+    status: "Ocupada",
+  },
+])
