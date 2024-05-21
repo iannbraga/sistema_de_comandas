@@ -1,7 +1,7 @@
 <% # app/views/dashboard.html.erb %>
 
 
-<table class="table text-center">
+<table class="table table-striped text-center">
   <thead>
     <tr>
       <th scope="col" class="text-start">Produto</th>
@@ -16,7 +16,7 @@
         <td class="text-start"><%= Produto.find(item.produto_id).nome %></td>
         <td><%= item.quantidade_total %></td>
         <td>R$ <%= valor_com_duas_casas(item.total_reais) %></td>
-        <% total_reais += item.total_reais%>
+        <% total_reais += item.total_reais %>
     <% end %>
 
     <tr>
