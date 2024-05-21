@@ -1,5 +1,4 @@
-<% # app/views/itens/_item_fields.html.erb %>
-
+<% # app/views/vendas/_item_fields.html.erb %>
 <div class="nested-fields">
   <div class="row">
     <div class="col-12 col-sm-12 col-md-4 p-2">
@@ -19,36 +18,28 @@
       <%= f.number_field :subtotal, step: 0.01, class: "form-control subtotal" %>
     </div>
     <div class="col-6 col-sm-6 col-md-1 p-2 pt-3">
-      <%= link_to_remove_association f, data: { bs_toggle: "tooltip", bs_placement: "bottom", bs_title: "Remover" }, class: "btn pt-4 mt-2" do %>
+      <%= link_to_remove_association f, data: { bs_toggle: "tooltip", bs_placement: "bottom", bs_title: "Remover" }, class: "btn pt-4 mt-2 link-to-remove" do %>
         <i class="bi bi-trash text-danger"></i>
       <% end %>
     </div>
   </div>
 </div>
 
-
-
-
 <script>
 $(document).ready(function() {
-  
-  // Carregar os produtos a partir de uma variável JavaScript
   var produtos = <%= Produto.all.map { |p| [p.id, p.preco] }.to_json.html_safe %>;
 
   function calcularTotalVenda(nestedField, isPrecoUnitarioChanged = false) {
     var selectElement = nestedField.find('.produto-select');
     var precoElement = nestedField.find('.produto-preco');
     var quantidadeElement = nestedField.find('.quantidade');
-    var subtotalElement = nestedField.find('.subtotal'); // Adicionado
+    var subtotalElement = nestedField.find('.subtotal');
 
     var produto_select = selectElement.val();
     var produtoAnterior = nestedField.data('produto-id');
-
-    // Verificar se o produto mudou
     var produtoMudou = produto_select != produtoAnterior;
-    nestedField.data('produto-id', produto_select); // Atualizar o produto anterior
+    nestedField.data('produto-id', produto_select);
 
-    // Encontrar o preço correspondente na lista de produtos
     var preco_produto = null;
     for (var i = 0; i < produtos.length; i++) {
       if (produtos[i][0] == produto_select) {
@@ -57,7 +48,6 @@ $(document).ready(function() {
       }
     }
 
-    // Atribuir o preço se o produto mudou e não foi manualmente alterado
     if (preco_produto !== null && produtoMudou && !isPrecoUnitarioChanged) {
       precoElement.val(preco_produto);
     }
@@ -67,18 +57,14 @@ $(document).ready(function() {
 
     if (!isNaN(preco_atual) && !isNaN(quantidade)) {
       var subtotal = preco_atual * quantidade;
-      subtotalElement.val(subtotal); // Atualiza o subtotal
-
-      atualizarTotalGeral(); // Atualizar o total geral
-    } else {
-      console.log('Erro ao calcular o subtotal');
+      subtotalElement.val(subtotal);
+      atualizarTotalGeral();
     }
   }
 
   function calcularTotalGeral() {
     var totalGeral = 0;
 
-    // Somar os subtotais de todos os itens
     $('.subtotal').each(function(index, subtotalElement) {
       var subtotal = parseFloat($(subtotalElement).val());
       if (!isNaN(subtotal)) {
@@ -86,29 +72,33 @@ $(document).ready(function() {
       }
     });
 
-    return totalGeral;
+    $('.total-venda').val(totalGeral);
   }
 
-  // Atualizar o total geral sempre que necessário
   function atualizarTotalGeral() {
-    $('.total-venda').val(calcularTotalGeral());
+    calcularTotalGeral();
   }
 
-  // Calcular o total ao carregar a página
   $('.nested-fields').each(function(index, nestedField) {
     calcularTotalVenda($(nestedField));
   });
 
-  // Atualizar os subtotais ao alterar a seleção, quantidade ou preço unitário
   $(document).on('change input', '.produto-select, .quantidade, .produto-preco', function() {
     var nestedField = $(this).closest('.nested-fields');
     var isPrecoUnitarioChanged = $(this).hasClass('produto-preco');
     calcularTotalVenda(nestedField, isPrecoUnitarioChanged);
   });
 
-  // Atualizar o total ao remover um item
+  // Atualizar o total ao clicar no botão de remover item
+  $(document).on('click', '.link-to-remove', function() {
+    setTimeout(function() {
+      calcularTotalGeral();
+    }, 0);
+  });
+
+  // Atualizar o total ao remover um item através do cocoon
   $(document).on('cocoon:after-remove', function() {
-    atualizarTotalGeral();
+    calcularTotalGeral();
   });
 });
 
