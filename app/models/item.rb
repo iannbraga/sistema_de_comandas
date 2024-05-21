@@ -5,4 +5,5 @@ class Item < ApplicationRecord
   def preco_unitario
     sprintf('%.2f', self[:preco_unitario])
   end
+  
 end

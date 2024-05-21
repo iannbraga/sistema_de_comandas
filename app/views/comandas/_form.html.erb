@@ -14,8 +14,8 @@
     
     <div class="row ps-0">
       <div class="col-sm-12 col-md-9 col-lg-9 col-xl-9 pt-3">
-          <%= form.label :nome, "Nome", class: "form-label" %>
-          <%= form.number_field :nome, class: "form-control" %>
+          <%= form.label :nome, "Nome", autofocus: true, class: "form-label" %>
+          <%= form.text_field :nome, autofocus: true, class: "form-control" %>
       </div>
 
       <div class="col-sm-12 col-md-3 col-lg-3 col-xl-3 pt-3">

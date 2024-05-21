@@ -1,3 +1,7 @@
-<h1 class="display-5">Nova venda</h1>
-
+<h1 class="display-5">
+    <%= link_to vendas_path, class: "nav-link" do %>
+    <i class="bi bi-caret-left fs-1"></i>
+    Nova Venda
+    <% end %>
+</h1>
 <%= render "form", venda: @venda %>
