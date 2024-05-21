@@ -1,6 +1,4 @@
-<p style="color: green"><%= notice %></p>
-
-<h1>Vendas</h1>
+<h1 class="display-5">Vendas</h1>
 
 <div id="vendas">
   <% @vendas.each do |venda| %>
@@ -11,4 +9,6 @@
   <% end %>
 </div>
 
-<%= link_to "New venda", new_venda_path %>
+<%= link_to new_venda_path, class: "btn btn-primary floating-btn" do %>
+  <i class="bi bi-plus fs-1"></i>
+<% end %>
