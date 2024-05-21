@@ -22,7 +22,7 @@ outros = [
     estoque: 0,
     categoria: "Outros",
     icone: "fa-solid fa-music",
-  }
+  },
 ]
 
 cervejas = [
@@ -194,163 +194,155 @@ cervejas = [
     estoque: 0,
     categoria: "Cerveja",
     icone: "fa-solid fa-beer-mug-empty",
-  }
+  },
 ]
 
 bebidas = [
   {
     nome: "Água",
-    descricao: "c/ gás",
-    preco: 0,
+    descricao: "s/ gás",
+    preco: 4,
     estoque: 0,
     categoria: "Bebidas",
-    icone: "fa-solid fa-bottle-water"
+    icone: "fa-solid fa-bottle-water",
   },
   {
     nome: "Água",
-    descricao: "s/ gás",
-    preco: 0,
+    descricao: "c/ gás",
+    preco: 5,
     estoque: 0,
     categoria: "Bebidas",
-    icone: "fa-solid fa-bottle-water"
+    icone: "fa-solid fa-bottle-water",
   },
   # Coca Cola
   {
     nome: "Coca",
     descricao: "350ml",
-    preco: 0,
+    preco: 5,
     estoque: 0,
     categoria: "Bebidas",
-    icone: "fa-solid fa-water"
+    icone: "fa-solid fa-water",
   },
   {
     nome: "Coca",
     descricao: "KS",
-    preco: 0,
+    preco: 5,
     estoque: 0,
     categoria: "Bebidas",
-    icone: "fa-solid fa-water"
+    icone: "fa-solid fa-water",
   },
   {
     nome: "Coca",
     descricao: "600ml",
-    preco: 0,
+    preco: 7,
     estoque: 0,
     categoria: "Bebidas",
-    icone: "fa-solid fa-water"
+    icone: "fa-solid fa-water",
   },
   {
     nome: "Coca",
     descricao: "1L",
-    preco: 0,
+    preco: 10,
     estoque: 0,
     categoria: "Bebidas",
-    icone: "fa-solid fa-water"
+    icone: "fa-solid fa-water",
   },
   {
     nome: "Coca",
     descricao: "2L",
-    preco: 0,
+    preco: 15,
     estoque: 0,
     categoria: "Bebidas",
-    icone: "fa-solid fa-water"
+    icone: "fa-solid fa-water",
   },
   # Guaraná
   {
     nome: "Guaraná",
-    descricao: "1L",
-    preco: 0,
-    estoque: 0,
-    categoria: "Bebidas",
-    icone: "fa-solid fa-water"
-  },
-  {
-    nome: "Guaraná",
     descricao: "2L",
-    preco: 0,
+    preco: 10,
     estoque: 0,
     categoria: "Bebidas",
-    icone: "fa-solid fa-water"
+    icone: "fa-solid fa-water",
   },
   # Sukita
   {
     nome: "Sukita",
     descricao: "600ml",
-    preco: 0,
+    preco: 5,
     estoque: 0,
     categoria: "Bebidas",
-    icone: "fa-solid fa-water"
+    icone: "fa-solid fa-water",
   },
   # Tônica
   {
     nome: "Tônica",
     descricao: "Lata",
-    preco: 0,
+    preco: 6,
     estoque: 0,
     categoria: "Bebidas",
-    icone: "fa-solid fa-water"
+    icone: "fa-solid fa-water",
   },
   # Gatorede
   {
     nome: "Gatorede",
     descricao: "",
-    preco: 0,
+    preco: 8,
     estoque: 0,
     categoria: "Bebidas",
-    icone: "fa-solid fa-water"
+    icone: "fa-solid fa-water",
   },
   # H2O
   {
     nome: "H2O",
-    descricao: "Lata",
-    preco: 0,
+    descricao: "",
+    preco: 6,
     estoque: 0,
     categoria: "Bebidas",
-    icone: "fa-solid fa-water"
+    icone: "fa-solid fa-water",
   },
   # Suco
   {
     nome: "Suco",
     descricao: "1L",
-    preco: 0,
+    preco: 8,
     estoque: 0,
     categoria: "Bebidas",
-    icone: "fa-solid fa-water"
+    icone: "fa-solid fa-water",
   },
   # Água de coco
   {
     nome: "Água",
     descricao: "de Coco",
-    preco: 0,
+    preco: 12,
     estoque: 0,
     categoria: "Bebidas",
-    icone: "fa-solid fa-water"
+    icone: "fa-solid fa-water",
   },
   # Energéticos
   {
     nome: "Monster",
     descricao: "",
-    preco: 0,
+    preco: 12,
     estoque: 0,
     categoria: "Bebidas",
-    icone: "fa-solid fa-water"
+    icone: "fa-solid fa-water",
   },
   {
     nome: "Redbull",
     descricao: "",
-    preco: 0,
+    preco: 12,
     estoque: 0,
     categoria: "Bebidas",
-    icone: "fa-solid fa-water"
+    icone: "fa-solid fa-water",
   },
   {
     nome: "FireNigth",
     descricao: "de Coco",
-    preco: 0,
+    preco: 10,
     estoque: 0,
     categoria: "Bebidas",
-    icone: "fa-solid fa-water"
-  }
+    icone: "fa-solid fa-water",
+  },
 ]
 
 doses = [
@@ -366,7 +358,7 @@ doses = [
   {
     nome: "Ballantinos",
     descricao: "",
-    preco: 4,
+    preco: 10,
     estoque: 0,
     categoria: "Dose",
     icone: "fa-solid fa-whiskey-glass",
@@ -374,7 +366,7 @@ doses = [
   {
     nome: "Passaporte",
     descricao: "",
-    preco: 4,
+    preco: 10,
     estoque: 0,
     categoria: "Dose",
     icone: "fa-solid fa-whiskey-glass",
@@ -382,7 +374,7 @@ doses = [
   {
     nome: "Montila",
     descricao: "",
-    preco: 4,
+    preco: 5,
     estoque: 0,
     categoria: "Dose",
     icone: "fa-solid fa-whiskey-glass",
@@ -390,7 +382,7 @@ doses = [
   {
     nome: "Jurupinga",
     descricao: "",
-    preco: 4,
+    preco: 5,
     estoque: 0,
     categoria: "Dose",
     icone: "fa-solid fa-whiskey-glass",
@@ -398,7 +390,7 @@ doses = [
   {
     nome: "José Cuervo",
     descricao: "",
-    preco: 4,
+    preco: 10,
     estoque: 0,
     categoria: "Dose",
     icone: "fa-solid fa-whiskey-glass",
@@ -462,7 +454,7 @@ salgados = [
     preco: 7.00,
     estoque: 0,
     categoria: "Salgados",
-    icone: "fa-solid fa-utensils"
+    icone: "fa-solid fa-utensils",
   },
   {
     nome: "Micos",
@@ -470,7 +462,7 @@ salgados = [
     preco: 3.00,
     estoque: 0,
     categoria: "Salgados",
-    icone: "fa-solid fa-utensils"
+    icone: "fa-solid fa-utensils",
   },
   {
     nome: "Micão",
@@ -478,7 +470,7 @@ salgados = [
     preco: 4.00,
     estoque: 0,
     categoria: "Salgados",
-    icone: "fa-solid fa-utensils"
+    icone: "fa-solid fa-utensils",
   },
   {
     nome: "Torresmo",
@@ -486,7 +478,7 @@ salgados = [
     preco: 7.00,
     estoque: 0,
     categoria: "Salgados",
-    icone: "fa-solid fa-utensils"
+    icone: "fa-solid fa-utensils",
   },
 ]
 
@@ -524,23 +516,15 @@ porcoes = [
     icone: "fa-solid fa-utensils",
   },
   {
-    nome: "Frango a passarinho com batata",
+    nome: "Frango a passarinho c/ calabresa",
     descricao: "",
-    preco: 40,
+    preco: 42,
     estoque: 0,
     categoria: "Porções",
     icone: "fa-solid fa-utensils",
   },
   {
-    nome: "Frango a passarinho com batata e calabresa",
-    descricao: "",
-    preco: 55,
-    estoque: 0,
-    categoria: "Porções",
-    icone: "fa-solid fa-utensils",
-  },
-  {
-    nome: "Frango a passarinho acebolado com batata, calabresa e cheddar",
+    nome: "Frango a passarinho c/ fritas, calabresa e cheddar",
     descricao: "",
     preco: 55,
     estoque: 0,
@@ -586,7 +570,6 @@ porcoes.each do |porcao|
   p "Cadastrando #{porcao[:nome]}"
   Produto.create(porcao)
 end
-
 
 (1..20).each do |i|
   p "Comanda N° #{i}"
