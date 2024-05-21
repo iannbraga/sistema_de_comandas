@@ -7,4 +7,8 @@ class Pedido < ApplicationRecord
   def total
     itens.sum(&:subtotal)
   end
+
+  def subtotal
+    sprintf("%.2f", self[:subtotal])
+  end
 end

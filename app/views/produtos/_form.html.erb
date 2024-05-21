@@ -31,7 +31,7 @@
       -->
       <div class="col-4 pt-4 field">
         <%= form.label :preco, "Preço", class: "form-label" %>
-        <%= form.text_field :preco, class: "form-control" %>
+        <%= form.number_field :preco, step: 0.01, class: "form-control" %>
       </div>
 
       <div class="col-4 pt-4 field">
