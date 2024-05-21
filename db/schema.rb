@@ -60,7 +60,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_20_224142) do
 
   create_table "produtos", force: :cascade do |t|
     t.string "nome"
-    t.text "descricao"
     t.decimal "preco"
     t.integer "estoque"
     t.string "categoria"
