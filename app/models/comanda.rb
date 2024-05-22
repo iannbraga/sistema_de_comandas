@@ -14,8 +14,10 @@ class Comanda < ApplicationRecord
     end
   end
 
+  validates :numero, presence: true, uniqueness: true
+
   def atualizar_total
-    total_comanda = pedidos.sum(:total)
-    update(total: total_comanda)
+    self.total = pedidos.sum(:total)
+    save
   end
 end
