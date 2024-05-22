@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "3.2.4"
+ruby "3.2.2"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.8", ">= 7.0.8.1"
@@ -71,9 +71,7 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
-
 end
-
 
 gem "jquery-rails", "~> 4.6"
 
@@ -81,4 +79,4 @@ gem "cocoon", "~> 1.2"
 
 gem "pry", "~> 0.14.2"
 
-gem 'ransack'
+gem "ransack"

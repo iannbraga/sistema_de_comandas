@@ -1,4 +1,3 @@
-# comanda.rb
 class Comanda < ApplicationRecord
   has_many :pedidos, dependent: :destroy
   has_many :pagamentos, dependent: :destroy
@@ -16,8 +15,7 @@ class Comanda < ApplicationRecord
   end
 
   def atualizar_total
-    total_pedidos = pedidos.where(finalizado: false).sum(:total)
-    self.total = total_pedidos
+    self.total = pedidos.sum(:total) # Considera todos os pedidos, tanto finalizados quanto não finalizados
     save
   end
 

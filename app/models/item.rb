@@ -5,11 +5,10 @@ class Item < ApplicationRecord
   validates :produto_id, :quantidade, :preco_unitario, presence: true
   validate :estoque_suficiente
 
-  after_save :atualizar_estoque
+  before_save :calcular_subtotal, :atualizar_estoque
 
-
-  def preco_unitario
-    sprintf('%.2f', self[:preco_unitario])
+  def calcular_subtotal
+    self.subtotal = preco_unitario.to_f * quantidade
   end
 
   private
@@ -23,5 +22,4 @@ class Item < ApplicationRecord
   def atualizar_estoque
     produto.update(estoque: produto.estoque - quantidade)
   end
-  
 end
