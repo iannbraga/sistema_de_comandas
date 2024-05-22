@@ -11,9 +11,9 @@ class Comanda < ApplicationRecord
 
   def atualizar_status
     if pedidos.size > 0
-      update(status: "Ocupada")
+      self.status = "Ocupada"
     else
-      update(status: "Livre")
+      self.status = "Livre"
     end
   end
 

@@ -497,56 +497,57 @@ porcoes = [
   },
 ]
 
-outros.each do |item|
-  p "Cadastrando #{item[:nome]}"
-  Produto.create(item)
-end
+#outros.each do |item|
+#  p "Cadastrando #{item[:nome]}"
+#  Produto.create(item)
+#end
 
-cervejas.each do |item|
-  p "Cadastrando #{item[:nome]}"
-  Produto.create(item)
-end
+#cervejas.each do |item|
+#  p "Cadastrando #{item[:nome]}"
+#  Produto.create(item)
+#end
 
-bebidas.each do |item|
-  p "Cadastrando #{item[:nome]}"
-  Produto.create(item)
-end
+#bebidas.each do |item|
+#  p "Cadastrando #{item[:nome]}"
+#  Produto.create(item)
+#end
 
-doses.each do |item|
-  p "Cadastrando #{item[:nome]}"
-  Produto.create(item)
-end
+#doses.each do |item|
+#  p "Cadastrando #{item[:nome]}"
+#  Produto.create(item)
+#end
 
-salgados.each do |item|
-  p "Cadastrando #{item[:nome]}"
-  Produto.create(item)
-end
+#salgados.each do |item|
+#  p "Cadastrando #{item[:nome]}"
+#  Produto.create(item)
+#end
 
-porcoes.each do |item|
-  p "Cadastrando #{item[:nome]}"
-  Produto.create(item)
-end
+#porcoes.each do |item|
+#  p "Cadastrando #{item[:nome]}"
+#  Produto.create(item)
+#end
 
-(1..30).each do |i|
-  p "Comanda N° #{i}"
-  Comanda.create({
-    numero: i,
-    total: 0,
-    status: "Livre",
-  })
-end
+#(1..30).each do |i|
+#  p "Comanda N° #{i}"
+#  Comanda.create({
+#   numero: i,
+#    total: 0,
+#    status: "Livre",
+#  })
+#end
 
-Comanda.find_by(numero: 6).update(nome: "Sávio", status: "Ocupada")
-Comanda.find_by(numero: 23).update(nome: "Zé", status: "Ocupada")
-Comanda.create([
-  {
-    numero: 69,
-    nome: "Vitoria",
-    status: "Ocupada",
-  },
-  {
-    numero: 420,
-    nome: "Iann",
-    status: "Ocupada",
-  },
-])
+#Comanda.find_by(numero: 6).update(nome: "Sávio", status: "Ocupada")
+#Comanda.find_by(numero: 23).update(nome: "Zé", status: "Ocupada")
+#Comanda.create([
+  #{
+  #  numero: 69,
+  #  nome: "Vitoria",
+  #  status: "Ocupada",
+  #},
+  #{
+  #  numero: 420,
+  #  nome: "Iann",
+  #  status: "Ocupada",
+  #},
+#])
+Produto.all.update(estoque: 1000);
