@@ -1,25 +1,21 @@
 class ComandasController < ApplicationController
   before_action :set_comanda, only: %i[ show edit update destroy ]
 
-  # GET /comandas or /comandas.json
   def index
-    @comandas = Comanda.all
+    @q = Comanda.ransack(params[:q])
+    @comandas = @q.result(distinct: true)
   end
 
-  # GET /comandas/1 or /comandas/1.json
   def show
   end
 
-  # GET /comandas/new
   def new
     @comanda = Comanda.new
   end
 
-  # GET /comandas/1/edit
   def edit
   end
 
-  # POST /comandas or /comandas.json
   def create
     comanda_service = ComandaService.new(comanda_params)
     @comanda = comanda_service.create_comanda
@@ -35,7 +31,6 @@ class ComandasController < ApplicationController
     end
   end
 
-  # PATCH/PUT /comandas/1 or /comandas/1.json
   def update
     comanda_service = ComandaService.new(comanda_params)
 
@@ -50,7 +45,6 @@ class ComandasController < ApplicationController
     end
   end
 
-  # DELETE /comandas/1 or /comandas/1.json
   def destroy
     comanda_service = ComandaService.new(nil)
     comanda_service.destroy_comanda(@comanda)
@@ -63,12 +57,10 @@ class ComandasController < ApplicationController
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_comanda
     @comanda = Comanda.find(params[:id])
   end
 
-  # Only allow a list of trusted parameters through.
   def comanda_params
     params.require(:comanda).permit(:numero, :nome, :status, :total)
   end
