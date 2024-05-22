@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_05_22_220621) do
+ActiveRecord::Schema[7.0].define(version: 2024_05_22_232216) do
   create_table "comandas", force: :cascade do |t|
     t.integer "numero"
     t.string "nome", default: ""
@@ -55,7 +55,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_22_220621) do
     t.string "observacoes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "finalizado"
+    t.boolean "finalizado", default: false
     t.index ["comanda_id"], name: "index_pedidos_on_comanda_id"
   end
 
