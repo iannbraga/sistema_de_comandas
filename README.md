@@ -16,6 +16,7 @@ end
    - Número (identificador único do pedido)
    - Comanda (referência à comanda associada ao pedido)
    - Data e hora do pedido
+   - Lista de Itens
    - Status (em andamento, concluído, cancelado, etc.)
    - Observações (por exemplo, preferências do cliente)
 rails g scaffold Pedido comanda:references data:date hora:time observacoes
@@ -27,7 +28,6 @@ end
 
 
 3. Item:
-   - Número (identificador único do item)
    - Produto (referência ao produto associado ao item)
    - Quantidade
    - Preço unitário
