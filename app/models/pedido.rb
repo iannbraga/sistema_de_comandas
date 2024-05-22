@@ -4,11 +4,17 @@ class Pedido < ApplicationRecord
 
   accepts_nested_attributes_for :itens, allow_destroy: true
 
-  def total
-    itens.sum(&:subtotal)
+  before_save :calcular_total
+  after_save :atualizar_total_comanda
+
+  def calcular_total
+    itens.sum(:subtotal)
   end
 
-  def subtotal
-    sprintf("%.2f", self[:subtotal])
+  private
+
+  def atualizar_total_comanda
+    comanda.atualizar_total
   end
+
 end
