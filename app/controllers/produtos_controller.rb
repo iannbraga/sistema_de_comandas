@@ -22,10 +22,11 @@ class ProdutosController < ApplicationController
 
   # POST /produtos or /produtos.json
   def create
-    @produto = Produto.new(produto_params)
+    service = ProdutoService.new(produto_params)
+    @produto = service.create
 
     respond_to do |format|
-      if @produto.save
+      if @produto
         format.html { redirect_to produto_url(@produto), notice: "Produto was successfully created." }
         format.json { render :show, status: :created, location: @produto }
       else
@@ -37,8 +38,9 @@ class ProdutosController < ApplicationController
 
   # PATCH/PUT /produtos/1 or /produtos/1.json
   def update
+    service = ProdutoService.new(produto_params)
     respond_to do |format|
-      if @produto.update(produto_params)
+      if service.update(@produto, produto_params)
         format.html { redirect_to produto_url(@produto), notice: "Produto was successfully updated." }
         format.json { render :show, status: :ok, location: @produto }
       else
@@ -50,7 +52,8 @@ class ProdutosController < ApplicationController
 
   # DELETE /produtos/1 or /produtos/1.json
   def destroy
-    @produto.destroy
+    service = ProdutoService.new({})
+    service.destroy(@produto)
 
     respond_to do |format|
       format.html { redirect_to produtos_url, notice: "Produto was successfully destroyed." }

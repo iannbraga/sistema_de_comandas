@@ -174,8 +174,19 @@ GEM
       thor (~> 1.0)
       zeitwerk (~> 2.5)
     rake (13.2.1)
+<<<<<<< HEAD
     regexp_parser (2.9.2)
     reline (0.5.7)
+=======
+    ransack (4.1.1)
+      activerecord (>= 6.1.5)
+      activesupport (>= 6.1.5)
+      i18n
+    rdoc (6.6.3.1)
+      psych (>= 4.0.0)
+    regexp_parser (2.9.1)
+    reline (0.5.6)
+>>>>>>> 8bf03a0d9afd427365bbe63c11829a4563e266e4
       io-console (~> 0.5)
     rexml (3.2.8)
       strscan (>= 3.0.9)
@@ -234,6 +245,7 @@ DEPENDENCIES
   pry (~> 0.14.2)
   puma (~> 5.0)
   rails (~> 7.0.8, >= 7.0.8.1)
+  ransack
   selenium-webdriver
   sprockets-rails
   sqlite3 (~> 1.4)
