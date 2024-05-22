@@ -21,10 +21,16 @@
         <% end %>
       </div>
       
-      <div class="col-12">
+      <div class="col-6">
         <%= form.label :status, "Status", class: 'form-label' %>
         <%= form.text_field :status, class: 'form-control' %>
       </div>
+
+      <div class="col-6">
+        <%= form.label :total, "Status", class: 'form-label' %>
+        <%= form.number_field :total, step: 0.01, class: 'form-control' %>
+      </div>
+
       <div class="col-6 pt-3">
         <%= form.submit "Cadastrar", class: "btn btn-primary w-100" %>
       </div>

@@ -25,5 +25,8 @@
         <%= number_field_tag "total", pedido.total, class: "form-control w-50", disabled: true, readonly: true %>
       </div>
     <% end %>
+    <div class="col-2">
+      <%= button_to "Pago", pagar_pedido_path(pedido), method: :patch, class: "btn btn-primary" %>
+    </div>
   </div>
 </div>

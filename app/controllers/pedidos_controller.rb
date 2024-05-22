@@ -1,5 +1,6 @@
+# pedidos_controller.rb
 class PedidosController < ApplicationController
-  before_action :set_pedido, only: %i[ show edit update destroy ]
+  before_action :set_pedido, only: %i[ show edit update destroy pagar ]
 
   # GET /pedidos or /pedidos.json
   def index
@@ -33,6 +34,7 @@ class PedidosController < ApplicationController
     
     respond_to do |format|
       if @pedido.save
+        # Atualiza o total da comanda
         @pedido.comanda.atualizar_total
         
         format.html { redirect_to comanda_path(@pedido.comanda), notice: "Pedido was successfully created." }
@@ -60,6 +62,7 @@ class PedidosController < ApplicationController
   # DELETE /pedidos/1 or /pedidos/1.json
   def destroy
     @pedido.destroy
+    @pedido.comanda.atualizar_total # Atualiza o total da comanda
 
     respond_to do |format|
       format.html { redirect_to pedidos_url, notice: "Pedido was successfully destroyed." }
@@ -67,8 +70,14 @@ class PedidosController < ApplicationController
     end
   end
 
-  private
+  def pagar
+    @pedido = Pedido.find(params[:id])
+    @pedido.update(finalizado: true)
+    @pedido.comanda.atualizar_total # Atualiza o total da comanda
+    redirect_to comanda_path(@pedido.comanda), notice: "Pedido foi marcado como finalizado."
+  end
 
+  private
   # Use callbacks to share common setup or constraints between actions.
   def set_pedido
     @pedido = Pedido.find(params[:id])
@@ -76,6 +85,6 @@ class PedidosController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def pedido_params
-    params.require(:pedido).permit(:comanda_id, :data, :hora, :observacoes, :total, itens_attributes: [:id, :produto_id, :preco_unitario, :quantidade, :subtotal, :observacoes, :_destroy])
+    params.require(:pedido).permit(:comanda_id, :data, :hora, :observacoes, :total, :finalizado, itens_attributes: [:id, :produto_id, :preco_unitario, :quantidade, :subtotal, :observacoes, :_destroy])
   end
 end

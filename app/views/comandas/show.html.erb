@@ -27,7 +27,9 @@
       <p class="pb-3 text-center">  Não tem pedidos.</p>
     <% else %>
       <% @comanda.pedidos.each do |pedido| %>
-        <%= render "pedidos/pedido", pedido: pedido %>
+        <% unless pedido.finalizado %>
+          <%= render "pedidos/pedido", pedido: pedido %>
+        <% end %>
       <% end %>
     <% end %>
   </div>

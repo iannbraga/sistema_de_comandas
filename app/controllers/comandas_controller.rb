@@ -1,9 +1,10 @@
+# comandas_controller.rb
 class ComandasController < ApplicationController
   before_action :set_comanda, only: %i[ show edit update destroy ]
 
   def index
     @q = Comanda.ransack(params[:q])
-    @comandas = @q.result(distinct: true)
+    @comandas = @q.result(distinct: true).order(:numero)
   end
 
   def show
