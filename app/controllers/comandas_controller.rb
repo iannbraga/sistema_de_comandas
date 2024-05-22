@@ -17,11 +17,10 @@ class ComandasController < ApplicationController
   end
 
   def create
-    comanda_service = ComandaService.new(comanda_params)
-    @comanda = comanda_service.create_comanda
+    @comanda = Comanda.create(comanda_params)
 
     respond_to do |format|
-      if @comanda
+      if @comanda.save
         format.html { redirect_to comanda_url(@comanda), notice: "Comanda was successfully created." }
         format.json { render :show, status: :created, location: @comanda }
       else
@@ -32,10 +31,8 @@ class ComandasController < ApplicationController
   end
 
   def update
-    comanda_service = ComandaService.new(comanda_params)
-
     respond_to do |format|
-      if comanda_service.update_comanda(@comanda, comanda_params)
+      if @comanda.update(comanda_params)
         format.html { redirect_to comanda_url(@comanda), notice: "Comanda was successfully updated." }
         format.json { render :show, status: :ok, location: @comanda }
       else
@@ -46,8 +43,7 @@ class ComandasController < ApplicationController
   end
 
   def destroy
-    comanda_service = ComandaService.new(nil)
-    comanda_service.destroy_comanda(@comanda)
+    @comanda.destroy
 
     respond_to do |format|
       format.html { redirect_to comandas_url, notice: "Comanda was successfully destroyed." }

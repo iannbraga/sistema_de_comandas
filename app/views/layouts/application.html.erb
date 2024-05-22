@@ -10,8 +10,8 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
 
     <%= javascript_include_tag "jquery" %>
-    <%= javascript_include_tag 'https://unpkg.com/masonry-layout@4.2.2/dist/masonry.pkgd.min.js' %>
-    <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js' %>
+    <%= javascript_include_tag "https://unpkg.com/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" %>
+    <%= javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" %>
 
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
   </head>
@@ -19,7 +19,7 @@
   <body>
     <%= render "partials/navbar" %>
 
-    <div class="container-fluid p-5">
+    <div class="container-fluid">
       <%= yield %>
     </div>
 

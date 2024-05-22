@@ -2,7 +2,8 @@ class Comanda < ApplicationRecord
   has_many :pedidos, dependent: :destroy
   has_many :pagamentos, dependent: :destroy
 
-  validates :numero, presence: true, uniqueness: true
+  validates :numero, presence: { message: "O número da comanda é obrigatório" }
+  validates :numero, uniqueness: { message: "Já existe uma comanda com esse número" }
 
   def total
     sprintf("%.2f", self[:total])
@@ -15,7 +16,6 @@ class Comanda < ApplicationRecord
       update(status: "Livre")
     end
   end
-
 
   def atualizar_total
     self.total = pedidos.sum(:total)
