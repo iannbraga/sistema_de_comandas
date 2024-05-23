@@ -3,9 +3,14 @@ class ProdutosController < ApplicationController
 
   # GET /produtos or /produtos.json
   def index
-    @produtos = Produto.all
     @produtos_por_categoria = Produto.all.group_by(&:categoria)
     @categorias = @produtos_por_categoria.keys
+    if params[:estilo_visualizacao]
+      cookies[:estilo_visualizacao] = params[:estilo_visualizacao]
+      @estilo_visualizacao = params[:estilo_visualizacao]
+    else
+      @estilo_visualizacao = cookies[:estilo_visualizacao] || 'tabela'
+    end
   end
 
   # GET /produtos/1 or /produtos/1.json

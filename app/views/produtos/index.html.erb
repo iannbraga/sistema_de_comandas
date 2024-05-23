@@ -1,5 +1,23 @@
 <div class="container-fluid">
-  <h1 class="display-5 mb-5">Produtos</h1>
+<div class="row">
+  <div class="col d-flex justify-content-between align-items-center">
+    <h1 class="display-5 mb-5">Produtos</h1>
+    
+    <ul class="list-group list-group-horizontal mb-5">
+      <%= link_to produtos_path(estilo_visualizacao: 'grid'), class: "nav-link" do %>
+        <li class="list-group-item <%= 'bg-primary text-white' if @estilo_visualizacao.eql?('grid') %>">
+          <i class="bi bi-grid-fill"></i>
+        </li>
+      <% end %>          
+
+      <%= link_to produtos_path(estilo_visualizacao: 'tabela'), class: "nav-link" do %>
+        <li class="list-group-item  <%= 'bg-primary text-white' if @estilo_visualizacao.eql?('tabela') %>">
+          <i class="bi bi-table"></i>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
 
 <!-- Lista de Categorias no Topo -->
 <div class="row mb-4">
@@ -16,13 +34,11 @@
   <% @produtos_por_categoria.each do |categoria, produtos| %>
     <div class="col-12">
       <h6 class="text-center pt-4 display-6 fs-3 anchor-offset" id="<%= categoria.parameterize %>"><%= categoria %></h6>
-      <div class="row">
-        <% produtos.each do |produto| %>
-          <div class="col-2 col-sm-12 col-md-3 col-lg-2 col-xl-2 d-flex justify-content-center p-3">
-              <%= render "produto_card", produto: produto %>
-          </div>
-        <% end %>
-      </div>
+      <% if @estilo_visualizacao.eql?('grid') %>
+        <%= render "produto_card", produtos: produtos %>
+      <% else %>
+        <%= render 'tabela_produtos', produtos: produtos %>
+      <% end %>  
     </div>
   <% end %>
 </div>
@@ -31,7 +47,7 @@
 
 <%= render "partials/btn_back_to_top", link: "#navbar", formato: "circle", cor: "dark" %>
 
-<p style="color: green"><%= notice %></p>
+</div>
 
 
 <script>
@@ -58,4 +74,3 @@ document.addEventListener("turbo:load", function() {
   });
 });
 </script>
-</div>
