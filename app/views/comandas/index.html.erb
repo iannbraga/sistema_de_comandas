@@ -21,21 +21,21 @@
   <% @comandas.each do |comanda| %>
     <div class="col-sm-6 col-md-3 col-xl-2">
       <%= link_to comanda, class: "nav-link" do %>
-        <div class="card mb-3" style="height: 150px;">
+        <div class="card mb-3 text-white <%= status_comanda(comanda.status) %>" style="height: 150px;">
           <div class="card-body">
             
             <% unless comanda.nome.eql?("") %>
-              <h5 class="card-title text-center" style="padding-top: 10px; padding-bottom: 20px;">N° <%= comanda.numero %></h5>
+              <h5 class="card-title text-center fs-4" style="padding-top: 10px; padding-bottom: 20px;">N° <%= comanda.numero %></h5>
             <% else %>
-              <h5 class="card-title text-center" style="padding-top: 10px; padding-bottom: 40px;">N° <%= comanda.numero %></h5>
+              <h5 class="card-title text-center fs-4" style="padding-top: 10px; padding-bottom: 40px;">N° <%= comanda.numero %></h5>
             <% end %>
             
-            <h6 class="card-subtitle mb-2 text-body-secondary text-center">
+            <h6 class="card-subtitle mb-2 text-white text-center fs-5">
               <%= comanda.nome %>
             </h6>
 
-            <h6 class="card-subtitle mb-2 text-body-secondary text-center">
-              <span class="badge <%= status_comanda(comanda.status) %>">
+            <h6 class="card-subtitle mb-2 text-center">
+              <span class="badge bg-white text-body-secondary fs-6">
                 <%= comanda.status %>
               </span>
             </h6>

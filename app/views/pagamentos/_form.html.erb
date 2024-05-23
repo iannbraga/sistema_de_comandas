@@ -42,6 +42,6 @@
   </div>
 
   <div>
-    <%= form.submit %>
+    <%= form.submit "#{ request.path == new_pagamento_path ? 'Criar' : 'Salvar' }" %>
   </div>
 <% end %>

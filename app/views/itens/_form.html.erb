@@ -50,6 +50,6 @@
   <%= link_to_add_association "Add produto", form, :produtos, data: {association_insertion_node: '.produtos', association_insertion_method: :append} %>
   
   <div>
-    <%= form.submit %>
+    <%= form.submit "#{ request.path == new_item_path ? 'Criar' : 'Salvar' }", class: "btn btn-primary w-100" %>
   </div>
 <% end %>

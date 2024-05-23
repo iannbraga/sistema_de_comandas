@@ -63,7 +63,7 @@
       </div>
       
       <div class="col-6  pt-5 mt-2 d-flex justify-content-center">
-        <%= form.submit "Cadastrar", class: "btn btn-primary w-75" %>
+        <%= form.submit "#{ request.path == new_produto_path ? 'Criar' : 'Salvar' }", class: "btn btn-primary w-75" %>
       </div>
 
       <div class="col-6   pt-5 mt-2 d-flex justify-content-center">

@@ -32,7 +32,7 @@
       </div>
 
       <div class="col-6 pt-3">
-        <%= form.submit "Cadastrar", class: "btn btn-primary w-100" %>
+        <%= form.submit "#{ request.path == new_comanda_path ? 'Criar' : 'Salvar' }", class: "btn btn-primary w-100" %>
       </div>
 
       <div class="col-6 pt-3">
