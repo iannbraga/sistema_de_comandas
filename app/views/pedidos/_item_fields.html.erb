@@ -3,7 +3,7 @@
   <div class="row">
     <div class="col-12 col-sm-12 col-md-4 p-2">
       <%= f.label :produto_id, "Produto", class: "form-label" %>
-      <%= f.select :produto_id, Produto.all.map { |p| [p.nome, p.id] }, {}, class: "form-select produto-select" %>
+      <%= f.select :produto_id, Produto.all.order(:nome).map { |p| [p.nome, p.id] }, {}, class: "form-select produto-select" %>
     </div>
     <div class="col-6 col-sm-6 col-md-3 p-2">
       <%= f.label :preco_unitario, "Preço unitário", class: "form-label" %>

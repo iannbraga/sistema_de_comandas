@@ -22,11 +22,10 @@ class ProdutosController < ApplicationController
 
   # POST /produtos or /produtos.json
   def create
-    service = ProdutoService.new(produto_params)
-    @produto = service.create
+    @produto = Produto.create(produto_params)
 
     respond_to do |format|
-      if @produto
+      if @produto.save
         format.html { redirect_to produto_url(@produto), notice: "Produto was successfully created." }
         format.json { render :show, status: :created, location: @produto }
       else
@@ -52,8 +51,7 @@ class ProdutosController < ApplicationController
 
   # DELETE /produtos/1 or /produtos/1.json
   def destroy
-    service = ProdutoService.new({})
-    service.destroy(@produto)
+    @produto.destroy
 
     respond_to do |format|
       format.html { redirect_to produtos_url, notice: "Produto was successfully destroyed." }
@@ -70,6 +68,6 @@ class ProdutosController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def produto_params
-    params.require(:produto).permit(:nome, :preco, :estoque, :categoria)
+    params.require(:produto).permit(:nome, :preco, :estoque, :categoria, :icone)
   end
 end

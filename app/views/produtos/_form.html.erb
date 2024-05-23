@@ -39,6 +39,11 @@
         <%= form.number_field :estoque, class: "form-control" %>
       </div>
 
+      <div class="col-4 pt-4 field">
+        <%= form.label :categoria, class: "form-label" %>
+        <%= form.select :categoria,  Produto.pluck(:categoria).uniq.compact, {}, class: "form-control" %>
+      </div>
+
       <div class="col-12 pt-4 field">
         <label class="form-label">Ícones</label>
         <div class="row">
