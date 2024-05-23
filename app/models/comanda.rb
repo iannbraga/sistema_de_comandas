@@ -15,7 +15,7 @@ class Comanda < ApplicationRecord
   end
 
   def atualizar_total
-    self.total = pedidos.sum(:total) # Considera todos os pedidos, tanto finalizados quanto não finalizados
+    self.total = pedidos.where(finalizado: false).sum(:total) # Considera todos os pedidos, tanto finalizados quanto não finalizados
     save
   end
 

@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema[7.0].define(version: 2024_05_22_232216) do
+=======
+ActiveRecord::Schema[7.0].define(version: 2024_05_23_001211) do
+>>>>>>> d7c26e0 (Agora teoricamente ta dando certo)
   create_table "comandas", force: :cascade do |t|
     t.integer "numero"
     t.string "nome", default: ""

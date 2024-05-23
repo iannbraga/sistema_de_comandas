@@ -10,7 +10,7 @@ class Pedido < ApplicationRecord
   after_update :atualizar_total_comanda_pagar, if: :saved_change_to_finalizado?
 
   def calcular_total
-    self.total = itens.sum(:subtotal)
+    total = itens.sum(:subtotal)
   end
 
   private
