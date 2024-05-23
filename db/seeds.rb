@@ -1,11 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
-
 outros = [
   {
     nome: "Ficha de Sinuca",
@@ -497,57 +489,93 @@ porcoes = [
   },
 ]
 
-#outros.each do |item|
-#  p "Cadastrando #{item[:nome]}"
-#  Produto.create(item)
-#end
+outros.each do |item|
+ p "Cadastrando #{item[:nome]}"
+ Produto.create(item)
+end
 
-#cervejas.each do |item|
-#  p "Cadastrando #{item[:nome]}"
-#  Produto.create(item)
-#end
+cervejas.each do |item|
+ p "Cadastrando #{item[:nome]}"
+ Produto.create(item)
+end
 
-#bebidas.each do |item|
-#  p "Cadastrando #{item[:nome]}"
-#  Produto.create(item)
-#end
+bebidas.each do |item|
+ p "Cadastrando #{item[:nome]}"
+ Produto.create(item)
+end
 
-#doses.each do |item|
-#  p "Cadastrando #{item[:nome]}"
-#  Produto.create(item)
-#end
+doses.each do |item|
+ p "Cadastrando #{item[:nome]}"
+ Produto.create(item)
+end
 
-#salgados.each do |item|
-#  p "Cadastrando #{item[:nome]}"
-#  Produto.create(item)
-#end
+salgados.each do |item|
+ p "Cadastrando #{item[:nome]}"
+ Produto.create(item)
+end
 
-#porcoes.each do |item|
-#  p "Cadastrando #{item[:nome]}"
-#  Produto.create(item)
-#end
+porcoes.each do |item|
+ p "Cadastrando #{item[:nome]}"
+ Produto.create(item)
+end
 
-#(1..30).each do |i|
-#  p "Comanda N° #{i}"
-#  Comanda.create({
-#   numero: i,
-#    total: 0,
-#    status: "Livre",
-#  })
-#end
+(1..30).each do |i|
+ p "Comanda N° #{i}"
+ Comanda.create({
+  numero: i,
+   total: 0,
+   status: "Livre",
+ })
+end
 
-#Comanda.find_by(numero: 6).update(nome: "Sávio", status: "Ocupada")
-#Comanda.find_by(numero: 23).update(nome: "Zé", status: "Ocupada")
-#Comanda.create([
-  #{
-  #  numero: 69,
-  #  nome: "Vitoria",
-  #  status: "Ocupada",
-  #},
-  #{
-  #  numero: 420,
-  #  nome: "Iann",
-  #  status: "Ocupada",
-  #},
-#])
-# Produto.all.update(estoque: 1000);
+# Comanda.find_by(numero: 6).update(nome: "Sávio", status: "Ocupada")
+# Comanda.find_by(numero: 23).update(nome: "Zé", status: "Ocupada")
+# Comanda.create([
+#   {
+#    numero: 69,
+#    nome: "Vitoria",
+#    status: "Ocupada",
+#   },
+#   {
+#    numero: 420,
+#    nome: "Iann",
+#    status: "Ocupada",
+#   },
+# ])
+
+Produto.all.update(estoque: 1000);
+
+
+# Testar dados
+# Criação de Pedidos associados às Comandas
+Comanda.all.each do |comanda|
+  # Define uma data aleatória até 2 anos atrás
+  data_pedido = Date.today - rand(730)
+
+  pedido = Pedido.create!(
+    comanda: comanda,
+    data: data_pedido,
+    finalizado: false,
+    hora: Time.now,
+    total: 0.0,
+    observacoes: ""
+  )
+
+  # Adição de Itens aos Pedidos
+  30.times do
+    produto = Produto.order("RANDOM()").first
+    quantidade = rand(1..5)
+    preco_unitario = produto.preco
+    subtotal = quantidade * preco_unitario
+
+    Item.create!(
+      pedido: pedido,
+      produto: produto,
+      created_at: data_pedido,
+      quantidade: quantidade,
+      preco_unitario: preco_unitario,
+      subtotal: subtotal,
+      observacoes: "Sem observações"
+    )
+  end
+end
