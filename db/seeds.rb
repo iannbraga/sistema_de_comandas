@@ -550,4 +550,4 @@ porcoes = [
   #  status: "Ocupada",
   #},
 #])
-Produto.all.update(estoque: 1000);
+# Produto.all.update(estoque: 1000);
