@@ -1,4 +1,9 @@
-<h1>Editing pedido</h1>
+<h1 class="display-5">
+    <%= link_to _path, class: "nav-link" do %>
+    <i class="bi bi-caret-left fs-1"></i>
+    Editar Pedidos 
+    <% end %>
+</h1>
 
 <%= render "form", pedido: @pedido %>
 

@@ -1,3 +1,8 @@
-<h1>Editar Comanda</h1>
+<h1 class="display-5">
+    <%= link_to comandas_path, class: "nav-link" do %>
+    <i class="bi bi-caret-left fs-1"></i>
+    Editar Comanda 
+    <% end %>
+</h1>
 
 <%= render "form", comanda: @comanda %>

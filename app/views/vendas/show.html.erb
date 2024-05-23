@@ -1,10 +1,42 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @venda %>
-
-<div>
-  <%= link_to "Edit this venda", edit_venda_path(@venda) %> |
-  <%= link_to "Back to vendas", vendas_path %>
-
-  <%= button_to "Destroy this venda", @venda, method: :delete %>
-</div>
+<table class="table table-striped text-center">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col" class="text-start">Nome</th>
+            <th scope="col">Preço Unitário</th>
+            <th scope="col">Quantidade</th>
+            <th scope="col">Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @venda.itens.each do |item| %>
+            <tr>
+                <td>
+                    <%= item.id %>
+                </td>
+                <td class="text-start">
+                    <%= item.produto.nome %>
+                </td>
+                <td>
+                    R$ <%= item.subtotal %>
+                </td>
+                <td>
+                    R$ <%= item.quantidade %>
+                </td>
+                <td>
+                    <div class="row">
+                        <div class="col d-flex justify-content-center">
+                        <%= link_to edit_item_path(item), class: "nav-link me-1" do %>
+                            <i class="bi bi-pencil btn btn-warning"></i>
+                        <% end %>
+                        <%= button_to item, method: :delete, class: "nav-link ms-1" do %>
+                               <i class="bi bi-trash btn btn-danger"></i>
+                        <% end %>
+                    </div>
+                </div>
+            </td>
+        <% end %>
+    </tbody>
+</table>

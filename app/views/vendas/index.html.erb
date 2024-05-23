@@ -2,12 +2,7 @@
   <h1 class="display-5">Vendas</h1>
 
   <div id="vendas">
-    <% @vendas.each do |venda| %>
-      <%= render venda %>
-      <p>
-        <%= link_to "Show this venda", venda %>
-      </p>
-    <% end %>
+      <%= render 'tabela_vendas', vendas: @vendas %>
   </div>
 
   <%= render "partials/btn_floating", link: new_venda_path, formato: "circle", cor: "primary" %>

@@ -1,4 +1,9 @@
-<h1>Editing pagamento</h1>
+<h1 class="display-5">
+    <%= link_to pagamentos_path, class: "nav-link" do %>
+    <i class="bi bi-caret-left fs-1"></i>
+    Editar Pagamentos 
+    <% end %>
+</h1>
 
 <%= render "form", pagamento: @pagamento %>
 

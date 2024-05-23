@@ -1,9 +1,8 @@
-<h1>New pagamento</h1>
+<h1 class="display-5">
+    <%= link_to pagamentos_path, class: "nav-link" do %>
+    <i class="bi bi-caret-left fs-1"></i>
+    Novo Pagamento
+    <% end %>
+</h1>
 
 <%= render "form", pagamento: @pagamento %>
-
-<br>
-
-<div>
-  <%= link_to "Back to pagamentos", pagamentos_path %>
-</div>
