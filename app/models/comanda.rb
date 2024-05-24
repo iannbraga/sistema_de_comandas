@@ -10,6 +10,7 @@ class Comanda < ApplicationRecord
       self.status = "Ocupada"
     else
       self.status = "Livre"
+      self.nome = ""
     end
     save
   end
