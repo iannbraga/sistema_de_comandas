@@ -29,7 +29,7 @@ class VendasController < ApplicationController
 
     respond_to do |format|
       if @venda.save
-        format.html { redirect_to venda_url(@venda), notice: "Venda was successfully created." }
+        format.html { redirect_to vendas_url, notice: "Venda was successfully created." }
         format.json { render :show, status: :created, location: @venda }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -42,7 +42,7 @@ class VendasController < ApplicationController
   def update
     respond_to do |format|
       if @venda.update(venda_params)
-        format.html { redirect_to venda_url(@venda), notice: "Venda was successfully updated." }
+        format.html { redirect_to venda_url, notice: "Venda was successfully updated." }
         format.json { render :show, status: :ok, location: @venda }
       else
         format.html { render :edit, status: :unprocessable_entity }

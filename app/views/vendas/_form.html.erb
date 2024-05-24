@@ -35,7 +35,11 @@
     </div>
     <div class="col-12 p-2 pt-4">
       <%= f.label :total, "Total", class: "form-label" %>
-      <%= f.number_field :total, value: 0, step: 0.01, class: "form-control w-50 total-venda" %>
+      
+      <div class="input-group w-50">
+        <span class="input-group-text">R$</span>
+        <%= f.number_field :total, value: 0, step: 0.01, class: "form-control w-50 total-venda" %>
+      </div>
     </div>
     <div class="col-6 p-2 d-flex justify-content-center">
       <%= f.submit "#{ request.path == new_venda_path ? 'Criar' : 'Salvar' }", class: "btn btn-outline-dark m-2 w-100" %>

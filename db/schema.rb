@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_05_23_001211) do
+ActiveRecord::Schema[7.0].define(version: 2024_05_24_185406) do
   create_table "comandas", force: :cascade do |t|
     t.integer "numero"
     t.string "nome", default: ""
@@ -23,9 +23,9 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_23_001211) do
   create_table "itens", force: :cascade do |t|
     t.integer "pedido_id"
     t.integer "produto_id", null: false
-    t.integer "quantidade"
-    t.decimal "preco_unitario"
-    t.decimal "subtotal"
+    t.integer "quantidade", default: 1
+    t.decimal "preco_unitario", precision: 10, scale: 2, default: "0.0"
+    t.decimal "subtotal", precision: 10, scale: 2, default: "0.0"
     t.string "observacoes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

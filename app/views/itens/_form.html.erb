@@ -14,12 +14,12 @@
   <div class="row">
     <div class="col-2 pt-2">
       <%= form.label :pedido_id, 'Pedido ID', class: 'form-label' %>
-      <%= form.text_field :pedido_id, class: 'form-control' %>
+      <%= form.number_field :pedido_id, class: 'form-control' %>
     </div>
 
     <div class="col-2 pt-2">
       <%= form.label :produto_id, 'Produto ID', class: 'form-label' %>
-      <%= form.text_field :produto_id, class: 'form-control' %>
+      <%= form.number_field :produto_id, class: 'form-control' %>
     </div>
 
     <div class="col-2 pt-2">
@@ -29,12 +29,12 @@
 
     <div class="col-2 pt-2">
       <%= form.label :preco_unitario, class: 'form-label' %>
-      <%= form.text_field :preco_unitario, class: 'form-control' %>
+      <%= form.number_field :preco_unitario, step: 0.01, class: 'form-control' %>
     </div>
 
     <div class="col-2 pt-2">
       <%= form.label :subtotal, class: 'form-label' %>
-      <%= form.text_field :subtotal, class: 'form-control' %>
+      <%= form.number_field :subtotal, step: 0.01, class: 'form-control' %>
     </div>
 
     <div class="col-8 pt-2">

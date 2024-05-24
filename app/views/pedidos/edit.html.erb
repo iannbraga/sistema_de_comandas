@@ -1,15 +1,8 @@
 <h1 class="display-5">
-    <%= link_to _path, class: "nav-link" do %>
+    <%= link_to pedidos_path, class: "nav-link" do %>
     <i class="bi bi-caret-left fs-1"></i>
     Editar Pedidos 
     <% end %>
 </h1>
 
 <%= render "form", pedido: @pedido %>
-
-<br>
-
-<div>
-  <%= link_to "Show this pedido", @pedido %> |
-  <%= link_to "Back to pedidos", pedidos_path %>
-</div>

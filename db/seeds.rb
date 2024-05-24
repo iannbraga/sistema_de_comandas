@@ -562,7 +562,7 @@ Comanda.all.each do |comanda|
   )
 
   # Adição de Itens aos Pedidos
-  30.times do
+  5.times do
     produto = Produto.order("RANDOM()").first
     quantidade = rand(1..5)
     preco_unitario = produto.preco
