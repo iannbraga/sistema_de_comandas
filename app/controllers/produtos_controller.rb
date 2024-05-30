@@ -10,7 +10,7 @@ class ProdutosController < ApplicationController
       cookies[:estilo_visualizacao] = params[:estilo_visualizacao]
       @estilo_visualizacao = params[:estilo_visualizacao]
     else
-      @estilo_visualizacao = cookies[:estilo_visualizacao] || 'tabela'
+      @estilo_visualizacao = cookies[:estilo_visualizacao] || "tabela"
     end
   end
 
@@ -33,7 +33,7 @@ class ProdutosController < ApplicationController
 
     respond_to do |format|
       if @produto.save
-        format.html { redirect_to produto_url(@produto), notice: "Produto was successfully created." }
+        format.html { redirect_to produtos_url, notice: "Produto was successfully created." }
         format.json { render :show, status: :created, location: @produto }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -44,10 +44,9 @@ class ProdutosController < ApplicationController
 
   # PATCH/PUT /produtos/1 or /produtos/1.json
   def update
-    service = ProdutoService.new(produto_params)
     respond_to do |format|
-      if service.update(@produto, produto_params)
-        format.html { redirect_to produto_url(@produto), notice: "Produto was successfully updated." }
+      if @produto.update(produto_params)
+        format.html { redirect_to produtos_url, notice: "Produto was successfully updated." }
         format.json { render :show, status: :ok, location: @produto }
       else
         format.html { render :edit, status: :unprocessable_entity }
