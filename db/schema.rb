@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_05_24_185406) do
+ActiveRecord::Schema[7.0].define(version: 2024_05_31_194621) do
   create_table "comandas", force: :cascade do |t|
     t.integer "numero"
     t.string "nome", default: ""
     t.string "status", default: "Livre"
-    t.decimal "total", default: "0.0"
+    t.decimal "total", precision: 10, scale: 2, default: "0.0"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -51,7 +51,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_24_185406) do
     t.integer "comanda_id", null: false
     t.date "data"
     t.time "hora"
-    t.decimal "total"
+    t.decimal "total", precision: 10, scale: 2, default: "0.0"
     t.string "observacoes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -61,7 +61,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_24_185406) do
 
   create_table "produtos", force: :cascade do |t|
     t.string "nome"
-    t.decimal "preco"
+    t.decimal "preco", precision: 10, scale: 2, default: "0.0"
     t.integer "estoque"
     t.string "categoria"
     t.string "icone"
@@ -74,7 +74,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_24_185406) do
     t.time "hora"
     t.string "cliente"
     t.string "status"
-    t.decimal "total"
+    t.decimal "total", precision: 10, scale: 2, default: "0.0"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
