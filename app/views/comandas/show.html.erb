@@ -1,4 +1,4 @@
-<%# app/views/comandas/show.html.erb %> 
+<% # app/views/comandas/show.html.erb %> 
 <div class="row">
   <div class="col-10">  
     <h1 class="display-5">
@@ -6,15 +6,23 @@
         <i class="bi bi-caret-left fs-1"></i>
         Comanda N° <%= @comanda.numero %>
       <% end %>
+      <span class="ms-5 badge fs-6 <%= status_comanda(@comanda.status) %>">
+        <%= @comanda.status %>
+      </span>
+      <% unless @comanda.nome.eql?("") %>
+      <span class="ms-5 fs-6 badge bg-primary">
+        <%= @comanda.nome %>
+      </span>
+      <% end %>
     </h1>
   </div>
   <div class="col text-end">
       <ul class="list-unstyled list-inline">
         <li class="list-inline-item">
-          <%= link_to "", edit_comanda_path(@comanda), class: "btn btn-warning mt-2 fs-5 me-5 bi bi-pencil" %>
+          <%= link_to "", edit_comanda_path(@comanda), class: "btn btn-warning mt-2 fs-5 bi bi-pencil" %>
         </li>
         <li class="list-inline-item">
-          <%= button_to "", @comanda, method: :delete, class: "btn btn-danger  mt-2 fs-5 me-5 bi bi-trash" %>
+          <%= button_to "", @comanda, method: :delete, class: "btn btn-danger  mt-2 fs-5 bi bi-trash" %>
         </li>
       </ul>
   </div>
@@ -38,7 +46,10 @@
 
   <div class="col-2 pt-4">
     <label class="form-label">TOTAL</label>    
-    <input class="form-control" type="text" aria-label="" value="<%= @comanda.total %>" disabled readonly>
+    <div class="input-group">
+      <span class="input-group-text">R$</span>
+      <input class="form-control" type="text" aria-label="" value="<%= @comanda.total %>" disabled readonly>
+    </div>
   </div>
 
   

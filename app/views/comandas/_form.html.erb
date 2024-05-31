@@ -22,21 +22,28 @@
       </div>
       
       <div class="col-6">
-        <%= form.label :status, "Status", class: 'form-label' %>
-        <%= form.text_field :status, class: 'form-control' %>
+        <%= form.label :status, "Status", class: "form-label" %>
+        <%= form.select :status, %W[Livre Ocupada], {}, class: "form-control" %>
       </div>
 
       <div class="col-6">
-        <%= form.label :total, "Status", class: 'form-label' %>
-        <%= form.number_field :total, step: 0.01, class: 'form-control' %>
+        <%= form.label :total, "Total", class: "form-label" %>
+        <div class="input-group">
+          <span class="input-group-text">$</span>
+          <%= form.number_field :total, step: 0.50, class: "form-control" %>
+        </div>
       </div>
 
       <div class="col-6 pt-3">
-        <%= form.submit "#{ request.path == new_comanda_path ? 'Criar' : 'Salvar' }", class: "btn btn-primary w-100" %>
+        <%= form.submit "#{request.path == new_comanda_path ? "Criar" : "Salvar"}", class: "btn btn-primary w-100" %>
       </div>
 
       <div class="col-6 pt-3">
-        <%= link_to "Cancelar", comandas_path, class: "btn btn-danger w-100" %>
+        <% if request.path.eql?(new_comanda_path) %>
+          <%= link_to "Cancelar", comandas_path, class: "btn btn-danger w-100" %>
+        <% else %>
+          <%= link_to "Cancelar", comanda_path(comanda), class: "btn btn-danger w-100" %>
+        <% end %>
       </div>
     </div>
   <% end %>
