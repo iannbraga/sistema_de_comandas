@@ -490,42 +490,42 @@ porcoes = [
 ]
 
 outros.each do |item|
- p "Cadastrando #{item[:nome]}"
- Produto.create(item)
+  p "Cadastrando #{item[:nome]}"
+  Produto.create(item)
 end
 
 cervejas.each do |item|
- p "Cadastrando #{item[:nome]}"
- Produto.create(item)
+  p "Cadastrando #{item[:nome]}"
+  Produto.create(item)
 end
 
 bebidas.each do |item|
- p "Cadastrando #{item[:nome]}"
- Produto.create(item)
+  p "Cadastrando #{item[:nome]}"
+  Produto.create(item)
 end
 
 doses.each do |item|
- p "Cadastrando #{item[:nome]}"
- Produto.create(item)
+  p "Cadastrando #{item[:nome]}"
+  Produto.create(item)
 end
 
 salgados.each do |item|
- p "Cadastrando #{item[:nome]}"
- Produto.create(item)
+  p "Cadastrando #{item[:nome]}"
+  Produto.create(item)
 end
 
 porcoes.each do |item|
- p "Cadastrando #{item[:nome]}"
- Produto.create(item)
+  p "Cadastrando #{item[:nome]}"
+  Produto.create(item)
 end
 
 (1..30).each do |i|
- p "Comanda N° #{i}"
- Comanda.create({
-  numero: i,
-   total: 0,
-   status: "Livre",
- })
+  p "Comanda N° #{i}"
+  Comanda.create({
+    numero: i,
+    total: 0,
+    status: "Livre",
+  })
 end
 
 # Comanda.find_by(numero: 6).update(nome: "Sávio", status: "Ocupada")
@@ -543,39 +543,38 @@ end
 #   },
 # ])
 
-Produto.all.update(estoque: 1000);
-
+# Produto.all.update(estoque: 1000);
 
 # Testar dados
 # Criação de Pedidos associados às Comandas
-Comanda.all.each do |comanda|
-  # Define uma data aleatória até 2 anos atrás
-  data_pedido = Date.today - rand(730)
+# Comanda.all.each do |comanda|
+#   # Define uma data aleatória até 2 anos atrás
+#   data_pedido = Date.today - rand(730)
 
-  pedido = Pedido.create!(
-    comanda: comanda,
-    data: data_pedido,
-    finalizado: false,
-    hora: Time.now,
-    total: 0.0,
-    observacoes: ""
-  )
+#   pedido = Pedido.create!(
+#     comanda: comanda,
+#     data: data_pedido,
+#     finalizado: false,
+#     hora: Time.now,
+#     total: 0.0,
+#     observacoes: ""
+#   )
 
-  # Adição de Itens aos Pedidos
-  5.times do
-    produto = Produto.order("RANDOM()").first
-    quantidade = rand(1..5)
-    preco_unitario = produto.preco
-    subtotal = quantidade * preco_unitario
+#   # Adição de Itens aos Pedidos
+#   5.times do
+#     produto = Produto.order("RANDOM()").first
+#     quantidade = rand(1..5)
+#     preco_unitario = produto.preco
+#     subtotal = quantidade * preco_unitario
 
-    Item.create!(
-      pedido: pedido,
-      produto: produto,
-      created_at: data_pedido,
-      quantidade: quantidade,
-      preco_unitario: preco_unitario,
-      subtotal: subtotal,
-      observacoes: "Sem observações"
-    )
-  end
-end
+#     Item.create!(
+#       pedido: pedido,
+#       produto: produto,
+#       created_at: data_pedido,
+#       quantidade: quantidade,
+#       preco_unitario: preco_unitario,
+#       subtotal: subtotal,
+#       observacoes: "Sem observações"
+#     )
+#   end
+# end
