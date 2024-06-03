@@ -5,7 +5,9 @@ class Item < ApplicationRecord
   validates :produto_id, :quantidade, :preco_unitario, presence: true
   validate :estoque_suficiente
 
-  before_save :calcular_subtotal, :atualizar_estoque
+  before_save :calcular_subtotal
+  after_save :atualizar_estoque
+  before_destroy :repor_estoque
 
   def calcular_subtotal
     self.subtotal = preco_unitario.to_f * quantidade
@@ -20,6 +22,13 @@ class Item < ApplicationRecord
   end
 
   def atualizar_estoque
-    produto.update(estoque: produto.estoque - quantidade)
+    unless produto.diminuir_estoque(quantidade)
+      errors.add(:produto, "estoque insuficiente para a quantidade solicitada")
+      throw(:abort) # Impede que o registro seja salvo se o estoque não for suficiente
+    end
+  end
+
+  def repor_estoque
+    produto.aumentar_estoque(quantidade)
   end
 end
