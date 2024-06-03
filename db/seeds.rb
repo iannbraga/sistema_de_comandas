@@ -543,7 +543,7 @@ end
 #   },
 # ])
 
-# Produto.all.update(estoque: 1000);
+Produto.all.update(estoque: 1000)
 
 # Testar dados
 # Criação de Pedidos associados às Comandas

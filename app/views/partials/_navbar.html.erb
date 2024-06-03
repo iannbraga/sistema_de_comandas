@@ -15,6 +15,9 @@
       <li class="list-inline-item">
         <%= link_to "Produtos", produtos_path, class: "nav-link #{request.path.eql?(produtos_path) ? "text-dark" : "text-secondary"}" %>
       </li>
+      <li class="list-inline-item">
+        <%= link_to "Estoque", movimentacao_estoques_path, class: "nav-link #{request.path.eql?(movimentacao_estoques_path) ? "text-dark" : "text-secondary"}" %>
+      </li>
     </ul>
   </div>
 </nav>

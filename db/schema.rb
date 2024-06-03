@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_05_31_194621) do
+ActiveRecord::Schema[7.0].define(version: 2024_06_03_201504) do
   create_table "comandas", force: :cascade do |t|
     t.integer "numero"
     t.string "nome", default: ""
@@ -33,6 +33,18 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_31_194621) do
     t.index ["pedido_id"], name: "index_itens_on_pedido_id"
     t.index ["produto_id"], name: "index_itens_on_produto_id"
     t.index ["venda_id"], name: "index_itens_on_venda_id"
+  end
+
+  create_table "movimentacao_estoques", force: :cascade do |t|
+    t.integer "produto_id", null: false
+    t.integer "quantidade", default: 0, null: false
+    t.string "motivo", default: ""
+    t.string "observacao"
+    t.date "data"
+    t.time "hora"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["produto_id"], name: "index_movimentacao_estoques_on_produto_id"
   end
 
   create_table "pagamentos", force: :cascade do |t|
@@ -82,6 +94,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_31_194621) do
   add_foreign_key "itens", "pedidos"
   add_foreign_key "itens", "produtos"
   add_foreign_key "itens", "vendas"
+  add_foreign_key "movimentacao_estoques", "produtos"
   add_foreign_key "pagamentos", "comandas"
   add_foreign_key "pedidos", "comandas"
 end

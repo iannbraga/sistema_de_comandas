@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :movimentacao_estoques
   get "dashboard", to: "pages#dashboard", as: :dashboard
 
   resources :itens

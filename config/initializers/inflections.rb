@@ -12,6 +12,8 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
   inflect.irregular "pedido", "pedidos"
   inflect.irregular "pagamento", "pagamentos"
   inflect.irregular "item", "itens"
+  inflect.irregular "movimentacao", "movimentacoes"
+  inflect.irregular "estoque", "estoques"
 end
 
 # These inflection rules are supported but not enabled by default:
