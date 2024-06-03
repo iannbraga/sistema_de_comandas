@@ -1,14 +1,44 @@
-<p style="color: green"><%= notice %></p>
-
-<h1>Movimentacao estoques</h1>
+<h1 class="display-5 mb-5">Movimentacao estoques</h1>
 
 <div id="movimentacao_estoques">
-  <% @movimentacao_estoques.each do |movimentacao_estoque| %>
-    <%= render movimentacao_estoque %>
-    <p>
-      <%= link_to "Show this movimentacao estoque", movimentacao_estoque %>
-    </p>
-  <% end %>
+  <table class="table table-striped text-center">
+    <thead>
+        <tr>
+            <th scope="col" class="text-start">Produto</th>
+            <th scope="col">Quatidade</th>
+            <th scope="col">Motivo</th>
+            <th scope="col">Observações</th>
+            <th scope="col">Data</th>
+            <th scope="col">Hora</th>
+            <th scope="col">Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @movimentacao_estoques.each do |movimentacao_estoque| %>
+            <tr>
+                <td class="text-start"><%= movimentacao_estoque.produto.nome %></td>
+                <td><%= movimentacao_estoque.quantidade %></td>
+                <td><%= movimentacao_estoque.motivo %></td>
+                <td><%= movimentacao_estoque.observacao %></td>
+                <td><%= movimentacao_estoque.data.strftime("%d/%m/%Y") %></td>
+                <td><%= movimentacao_estoque.hora.strftime(" %H:%M") %></td>
+                
+                <td>
+                    <div class="row">
+                        <div class="col d-flex justify-content-center">
+                            <%= link_to edit_movimentacao_estoque_path(movimentacao_estoque), class: "nav-link me-1" do %>
+                                <i class="bi bi-pencil btn btn-warning"></i>
+                            <% end %>
+                            <%= button_to movimentacao_estoque, method: :delete, class: "nav-link ms-1" do %>
+                               <i class="bi bi-trash btn btn-danger"></i>
+                            <% end %>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        <% end %>
+    </tbody> 
+  </table>
 </div>
 
-<%= link_to "New movimentacao estoque", new_movimentacao_estoque_path %>
+<%= render "partials/btn_floating", link: new_movimentacao_estoque_path, formato: "square", texto: "Nova movimentação", cor: "primary" %>

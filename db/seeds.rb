@@ -543,7 +543,16 @@ end
 #   },
 # ])
 
-Produto.all.update(estoque: 1000)
+Produto.all.each do |produto|
+  MovimentacaoEstoque.create({
+    produto_id: produto.id,
+    quantidade: 1000,
+    motivo: "Inicio estoque",
+    observacao: "",
+    data: Date.today,
+    hora: Time.now,
+  })
+end
 
 # Testar dados
 # Criação de Pedidos associados às Comandas

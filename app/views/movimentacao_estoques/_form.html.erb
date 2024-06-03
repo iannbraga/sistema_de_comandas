@@ -11,37 +11,48 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :produto_id, class: "form-label" %>
-    <%= form.select :produto_id, Produto.all.map { |p| [p.nome, p.id] }, {}, class: "form-control" %>
-  </div>
+  <div class="container">
+      <div class="row">      
+        <div class="col-2 pt-2">
+          <%= form.label :data, class: "form-label" %>
+          <%= form.date_field :data, class: "form-control" %>
+        </div>
 
-  <div>
-    <%= form.label :quantidade, class: "form-label" %>
-    <%= form.number_field :quantidade, class: "form-control" %>
-  </div>
+        <div class="col-2 pt-2">
+          <%= form.label :hora, class: "form-label" %>
+          <%= form.time_field :hora, class: "form-control" %>
+        </div>
 
-  <div>
-    <%= form.label :motivo, "Motivo", class: "form-label" %>
-    <%= form.select :motivo, ["Estoque inicial", "Extravio", "Ajuste", "Outro"], {}, class: "form-control" %>
-  </div>
+        <div class="col-12 pt-4">
+        </div>
 
-  <div>
-    <%= form.label :observacao, class: "form-label" %>
-    <%= form.text_field :observacao, class: "form-control" %>
-  </div>
+        <div class="col-6 pt-2">
+          <%= form.label :produto_id, class: "form-label" %>
+          <%= form.select :produto_id, Produto.all.map { |p| [p.nome, p.id] }, {}, class: "form-control" %>
+        </div>
 
-  <div>
-    <%= form.label :data, class: "form-label" %>
-    <%= form.date_field :data, class: "form-control" %>
-  </div>
+        <div class="col-3 pt-2">
+          <%= form.label :quantidade, class: "form-label" %>
+          <%= form.number_field :quantidade, class: "form-control" %>
+        </div>
 
-  <div>
-    <%= form.label :hora, class: "form-label" %>
-    <%= form.time_field :hora, class: "form-control" %>
-  </div>
+        <div class="col-3 pt-2">
+          <%= form.label :motivo, "Motivo", class: "form-label" %>
+          <%= form.select :motivo, ["Estoque inicial", "Extravio", "Ajuste", "Outro"], {}, class: "form-control" %>
+        </div>
 
-  <div>
-    <%= form.submit %>
+        <div class="col-12 pt-2">
+          <%= form.label :observacao, class: "form-label" %>
+          <%= form.text_area :observacao, class: "form-control" %>
+        </div>
+
+        <div class="col-6 p-3 text-center">
+          <%= form.submit "Salvar", class: "btn btn-primary w-75" %>
+        </div>
+
+        <div class="col-6 p-3 text-center">
+          <%= link_to "Cancelar", movimentacao_estoques_path, class: "btn btn-danger w-75" %>
+        </div>
+    </div>
   </div>
 <% end %>

@@ -1,10 +1,8 @@
-<h1>Editing movimentacao estoque</h1>
+<h1 class="display-5">
+    <%= link_to movimentacao_estoques_path, class: "nav-link" do %>
+    <i class="bi bi-caret-left fs-1"></i>
+    Editar movimentação
+    <% end %>
+</h1>
 
 <%= render "form", movimentacao_estoque: @movimentacao_estoque %>
-
-<br>
-
-<div>
-  <%= link_to "Show this movimentacao estoque", @movimentacao_estoque %> |
-  <%= link_to "Back to movimentacao estoques", movimentacao_estoques_path %>
-</div>
