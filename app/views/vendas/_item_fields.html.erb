@@ -7,15 +7,21 @@
     </div>
     <div class="col-6 col-sm-6 col-md-3 p-2">
       <%= f.label :preco_unitario, "Preço unitário", class: "form-label" %>
-      <%= f.number_field :preco_unitario, step: 0.01, value: 0, class: "form-control produto-preco" %>
+      <div class="input-group">
+        <span class="input-group-text">R$</span>
+        <%= f.number_field :preco_unitario, step: 0.50, value: 0, class: "form-control produto-preco" %>
+      </div>
     </div>
     <div class="col-6 col-sm-6 col-md-2 p-2">
       <%= f.label :quantidade, "Quantidade", class: "form-label" %>
-      <%= f.number_field :quantidade, step: 0.01, value: 1, class: "form-control quantidade" %>
+      <%= f.number_field :quantidade, value: 1, class: "form-control quantidade" %>
     </div>
     <div class="col-6 col-sm-6 col-md-2 p-2">
       <%= f.label :subtotal, "Subtotal", class: "form-label" %>
-      <%= f.number_field :subtotal, step: 0.01, class: "form-control subtotal" %>
+      <div class="input-group">
+        <span class="input-group-text">R$</span>
+        <%= f.number_field :subtotal, step: 0.50, class: "form-control subtotal" %>
+      </div>
     </div>
     <div class="col-6 col-sm-6 col-md-1 p-2 pt-3">
       <%= link_to_remove_association f, data: { bs_toggle: "tooltip", bs_placement: "bottom", bs_title: "Remover" }, class: "btn pt-4 mt-2 link-to-remove" do %>

@@ -1,0 +1,52 @@
+<table class="table table-striped text-center">
+    <thead>
+        <tr>
+            <th scope="col">Comanda</th>
+            <th scope="col">Itens</th>
+            <th scope="col">Total</th>
+            <th scope="col">Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% pedidos.each do |pedido| %>
+            <tr>
+                <td><%= pedido.comanda_id %></td>
+                <td>
+                    <table class="table text-center">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Preço</th>
+                                <th>Qtd</th>
+                                <th>Subtotal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% pedido.itens.each do |item| %>
+                            <tr>
+                                <td><%= item.produto.nome %></td>
+                                <td>R$ <%= item.preco_unitario %></td>
+                                <td><%= item.quantidade %></td>
+                                <td>R$ <%= item.subtotal %></td>
+                            </tr>
+                            <% end %>
+                        </tbody>
+                    </table>
+                </td>
+                <td>R$ <%= pedido.total %></td>
+                <td>
+                    <div class="row">
+                        <div class="col d-flex justify-content-center">
+                            <%= link_to edit_produto_path(pedido), class: "nav-link me-1" do %>
+                                <i class="bi bi-pencil btn btn-warning"></i>
+                            <% end %>
+                            <%= button_to pedido, method: :delete, class: "nav-link ms-1" do %>
+                               <i class="bi bi-trash btn btn-danger"></i>
+                            <% end %>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>

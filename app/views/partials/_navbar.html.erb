@@ -1,24 +1,20 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary" id="navbar">
+<nav class="navbar bg-body-tertiary" id="navbar">
   <div class="container-fluid">
     <%= link_to "Bar do Colombiano", dashboard_path, class: "navbar-brand" %>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-            <%= link_to "Comandas", comandas_path, class: "nav-link #{"active" if request.path.eql?(comandas_path)}" %>
-        </li>
-        <li class="nav-item">
-            <%= link_to "Vendas", vendas_path, class: "nav-link #{"active" if request.path.eql?(vendas_path)}" %>
-        </li>
-        <li class="nav-item">
-            <%= link_to "Pedidos", pedidos_path, class: "nav-link #{"active" if request.path.eql?(pedidos_path)}" %>
-        </li>
-        <li class="nav-item">
-            <%= link_to "Produtos", produtos_path, class: "nav-link #{"active" if request.path.eql?(produtos_path)}" %>
-        </li>
-      </ul>
-    </div>
+    
+    <ul class="list-inline pt-4">
+      <li class="list-inline-item">
+        <%= link_to "Comandas", comandas_path, class: "nav-link #{request.path.eql?(comandas_path) ? "text-dark" : "text-secondary"}" %>
+      </li>
+      <li class="list-inline-item">
+        <%= link_to "Vendas", vendas_path, class: "nav-link #{request.path.eql?(vendas_path) ? "text-dark" : "text-secondary"}" %>
+      </li>
+      <li class="list-inline-item">
+        <%= link_to "Pedidos", pedidos_path, class: "nav-link #{request.path.eql?(pedidos_path) ? "text-dark" : "text-secondary"}" %>
+      </li>
+      <li class="list-inline-item">
+        <%= link_to "Produtos", produtos_path, class: "nav-link #{request.path.eql?(produtos_path) ? "text-dark" : "text-secondary"}" %>
+      </li>
+    </ul>
   </div>
 </nav>

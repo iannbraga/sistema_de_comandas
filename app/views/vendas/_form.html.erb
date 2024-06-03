@@ -1,50 +1,53 @@
 <% # app/views/vendas/_form.html.erb %>
-<%= form_with(model: venda, local: true) do |f| %>
-  <% if venda.errors.any? %>
-      <div style="color: red">
-        <h2><%= pluralize(venda.errors.count, "error") %> prohibited this venda from being saved:</h2>
+<div class="container-fluid">
+  <%= form_with(model: venda, local: true) do |f| %>
+    <% if venda.errors.any? %>
+        <div style="color: red">
+          <h2><%= pluralize(venda.errors.count, "error") %> prohibited this venda from being saved:</h2>
 
-        <ul>
-          <% venda.errors.each do |error| %>
-            <li><%= error.full_message %></li>
+          <ul>
+            <% venda.errors.each do |error| %>
+              <li><%= error.full_message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+    <div class="row">
+      <div class="col-12">
+        <%= f.label :cliente, "Cliente", class: "form-label" %>
+        <%= f.text_field :cliente, class: "form-control w-50" %>
+      </div>
+      <div class="col-12 p-2">
+        <h3>Itens</h3>
+      </div>
+      <div class="col-9 p-2">
+        <div id="itens">
+          <%= f.fields_for :itens do |item| %>
+            <%= render "item_fields", f: item %>
           <% end %>
-        </ul>
+        </div>
+        <div class="links">
+          <%= link_to_add_association f, :itens, class: "btn btn-primary w-sm-100" do %>
+            Add
+            <i class="bi bi-plus"></i>
+          <% end %>
+        </div>
       </div>
-    <% end %>
+      <div class="col-12 p-2 pt-4">
+        <%= f.label :total, "Total", class: "form-label" %>
+        
+        <div class="input-group w-50">
+          <span class="input-group-text">R$</span>
+          <%= f.number_field :total, value: 0, step: 0.01, class: "form-control w-50 total-venda" %>
+        </div>
+      </div>
+      <div class="col-6 p-2 d-flex justify-content-center">
+        <%= f.submit "#{request.path == new_venda_path ? "Criar" : "Salvar"}", class: "btn btn-outline-dark m-2 w-100" %>
+        <%= link_to "Cancelar", vendas_path, class: "btn btn-danger m-2 w-100" %>
+      </div>
+    </div>
+  <% end %>
 
-  <div class="row">
-    <div class="col-12">
-      <%= f.label :cliente, "Cliente", class: "form-label" %>
-      <%= f.text_field :cliente, class: "form-control w-50" %>
-    </div>
-    <div class="col-12 p-2">
-      <h3>Itens</h3>
-    </div>
-    <div class="col-9 p-2">
-      <div id="itens">
-        <%= f.fields_for :itens do |item| %>
-          <%= render "item_fields", f: item %>
-        <% end %>
-      </div>
-      <div class="links">
-        <%= link_to_add_association f, :itens, class: "btn btn-primary w-sm-100" do %>
-          Add
-          <i class="bi bi-plus"></i>
-        <% end %>
-      </div>
-    </div>
-    <div class="col-12 p-2 pt-4">
-      <%= f.label :total, "Total", class: "form-label" %>
-      
-      <div class="input-group w-50">
-        <span class="input-group-text">R$</span>
-        <%= f.number_field :total, value: 0, step: 0.01, class: "form-control w-50 total-venda" %>
-      </div>
-    </div>
-    <div class="col-6 p-2 d-flex justify-content-center">
-      <%= f.submit "#{ request.path == new_venda_path ? 'Criar' : 'Salvar' }", class: "btn btn-outline-dark m-2 w-100" %>
-      <%= link_to "Cancelar", vendas_path, class: "btn btn-danger m-2 w-100" %>
-    </div>
-  </div>
-<% end %>
 
+</div>

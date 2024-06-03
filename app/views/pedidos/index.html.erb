@@ -2,16 +2,19 @@
   <% # app/views/pedidos/index.html.erb %>
 
 <h1 class="display-5">Pedidos</h1>
+    
+    <%= render "tabela_pedidos", pedidos: @pedidos %>
 
-<div class="grid" id="pedidos-grid">
+  <!--
+  <div class="grid" id="pedidos-grid">
     <% @pedidos.each do |pedido| %>
       <div class="grid-item pt-4">
         <%= render "pedido_card", pedido: pedido %>
       </div>
     <% end %>
   </div>
-
-<%= render "partials/btn_floating", link: new_pedido_path, formato: "circle", cor: "primary" %>
+  -->
+<%= render "partials/btn_floating", link: new_pedido_path, formato: "square", texto: "Novo pedido", cor: "primary" %>
 
 
 <script>

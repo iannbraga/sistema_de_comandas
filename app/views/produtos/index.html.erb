@@ -4,14 +4,14 @@
     <h1 class="display-5 mb-5">Produtos</h1>
     
     <ul class="list-group list-group-horizontal mb-5">
-      <%= link_to produtos_path(estilo_visualizacao: 'grid'), class: "nav-link" do %>
-        <li class="list-group-item <%= 'bg-primary text-white' if @estilo_visualizacao.eql?('grid') %>">
+      <%= link_to produtos_path(estilo_visualizacao: "grid"), class: "nav-link" do %>
+        <li class="list-group-item <%= "bg-primary text-white" if @estilo_visualizacao.eql?("grid") %>">
           <i class="bi bi-grid-fill"></i>
         </li>
       <% end %>          
 
-      <%= link_to produtos_path(estilo_visualizacao: 'tabela'), class: "nav-link" do %>
-        <li class="list-group-item  <%= 'bg-primary text-white' if @estilo_visualizacao.eql?('tabela') %>">
+      <%= link_to produtos_path(estilo_visualizacao: "tabela"), class: "nav-link" do %>
+        <li class="list-group-item  <%= "bg-primary text-white" if @estilo_visualizacao.eql?("tabela") %>">
           <i class="bi bi-table"></i>
         </li>
       <% end %>
@@ -34,18 +34,18 @@
   <% @produtos_por_categoria.each do |categoria, produtos| %>
     <div class="col-12">
       <h6 class="text-center pt-4 display-6 fs-3 anchor-offset" id="<%= categoria.parameterize %>"><%= categoria %></h6>
-      <% if @estilo_visualizacao.eql?('grid') %>
+      <% if @estilo_visualizacao.eql?("grid") %>
         <%= render "produto_card", produtos: produtos %>
       <% else %>
-        <%= render 'tabela_produtos', produtos: produtos %>
+        <%= render "tabela_produtos", produtos: produtos %>
       <% end %>  
     </div>
   <% end %>
 </div>
 
-<%= render "partials/btn_floating", link: new_produto_path, formato: "circle", cor: "primary" %>
+<%= render "partials/btn_floating", link: new_produto_path, formato: "square", texto: "Novo produto", cor: "primary" %>
 
-<%= render "partials/btn_back_to_top", link: "#navbar", formato: "circle", cor: "dark" %>
+<% #= render "partials/btn_back_to_top", link: "#navbar", formato: "circle", cor: "dark" %>
 
 </div>
 

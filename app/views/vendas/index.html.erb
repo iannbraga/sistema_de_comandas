@@ -2,8 +2,8 @@
   <h1 class="display-5">Vendas</h1>
 
   <div id="vendas">
-      <%= render 'tabela_vendas', vendas: @vendas %>
+      <%= render "tabela_vendas", vendas: @vendas %>
   </div>
 
-  <%= render "partials/btn_floating", link: new_venda_path, formato: "circle", cor: "primary" %>
+  <%= render "partials/btn_floating", link: new_venda_path, texto: "Nova venda", formato: "square", cor: "primary" %>
 </div>

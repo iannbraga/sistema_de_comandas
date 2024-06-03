@@ -4,7 +4,7 @@ class ComandasController < ApplicationController
 
   def index
     @q = Comanda.ransack(params[:q])
-    @comandas = @q.result(distinct: true).order(:numero)
+    @comandas = @q.result
   end
 
   def show

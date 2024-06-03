@@ -11,29 +11,23 @@
     <tbody>
         <% produtos.each do |produto| %>
             <tr>
-                <td>
-                    <%= produto.id %>
-                </td>
-                <td class="text-start">
-                    <%= produto.nome %>
-                </td>
-                <td>R$ <%= produto.preco %>
-                </td>
-                <td>
-                    <%= produto.estoque %>
-                </td>
+                <td><%= produto.id %></td>
+                <td class="text-start"><%= produto.nome %></td>
+                <td>R$ <%= produto.preco %></td>
+                <td><%= produto.estoque %></td>
                 <td>
                     <div class="row">
                         <div class="col d-flex justify-content-center">
-                        <%= link_to edit_produto_path(produto), class: "nav-link me-1" do %>
-                            <i class="bi bi-pencil btn btn-warning"></i>
-                        <% end %>
-                        <%= button_to produto, method: :delete, class: "nav-link ms-1" do %>
+                            <%= link_to edit_produto_path(produto), class: "nav-link me-1" do %>
+                                <i class="bi bi-pencil btn btn-warning"></i>
+                            <% end %>
+                            <%= button_to produto, method: :delete, class: "nav-link ms-1" do %>
                                <i class="bi bi-trash btn btn-danger"></i>
-                        <% end %>
+                            <% end %>
+                        </div>
                     </div>
-                </div>
-            </td>
+                </td>
+            </tr>
         <% end %>
     </tbody>
 </table>

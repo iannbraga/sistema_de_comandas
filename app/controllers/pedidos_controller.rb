@@ -8,11 +8,41 @@ class PedidosController < ApplicationController
   def show
   end
 
+  # def new
+  #   @pedido = Pedido.new
+  #   @pedido.itens.build
+  #   @comanda = Comanda.find(numero: params[:numero_comanda]) unless params[:numero_comanda].nil?
+  #   @pedido.comanda = @comanda
+  #   @pedido.data = Date.today
+  #   @pedido.hora = Time.now
+  # end
+
+  def edit
+  end
+
+  # def create
+  #   @pedido = Pedido.new(pedido_params)
+  #   @pedido.data = Date.today
+  #   @pedido.hora = Time.now
+
+  #   @comanda = Comanda.find(numero: params[:numero_comanda]) unless params[:numero_comanda].nil?
+
+  #   respond_to do |format|
+  #     if @pedido.save
+  #       @pedido.comanda.atualizar_total
+  #       @pedido.comanda.atualizar_status
+  #       format.html { redirect_to comanda_path(@pedido.comanda), notice: "Pedido was successfully created." }
+  #       format.json { render :show, status: :created, location: @pedido }
+  #     else
+  #       format.html { render :new, status: :unprocessable_entity }
+  #       format.json { render json: @pedido.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
+
   def new
     @pedido = Pedido.new
     @pedido.itens.build
-    @comanda = Comanda.find(params[:comanda_id]) unless params[:comanda_id].nil?
-    @pedido.comanda = @comanda
     @pedido.data = Date.today
     @pedido.hora = Time.now
   end
@@ -25,11 +55,21 @@ class PedidosController < ApplicationController
     @pedido.data = Date.today
     @pedido.hora = Time.now
 
+    # Buscar comanda pelo número informado
+    comanda_numero = params[:pedido][:numero_comanda]
+    @comanda = Comanda.find_by(numero: comanda_numero)
+
+    if @comanda
+      @pedido.comanda = @comanda
+    else
+      @pedido.errors.add(:comanda, "não encontrada")
+    end
+
     respond_to do |format|
-      if @pedido.save
+      if @pedido.errors.empty? && @pedido.save
         @pedido.comanda.atualizar_total
         @pedido.comanda.atualizar_status
-        format.html { redirect_to comanda_path(@pedido.comanda), notice: "Pedido was successfully created." }
+        format.html { redirect_to comanda_path(@pedido.comanda), notice: "Pedido foi criado com sucesso." }
         format.json { render :show, status: :created, location: @pedido }
       else
         format.html { render :new, status: :unprocessable_entity }
