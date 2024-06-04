@@ -8,6 +8,14 @@ class ComandasController < ApplicationController
   end
 
   def show
+    @itens_por_produto = @comanda.pedidos.includes(itens: :produto).flat_map(&:itens).group_by(&:produto)
+    @itens_por_produto_json = @comanda.pedidos.includes(itens: :produto).flat_map(&:itens).group_by(&:produto).map do |produto, itens|
+      {
+        nome_produto: produto.nome,
+        quantidade_total: itens.sum(&:quantidade),
+        preco_total: itens.sum { |item| item.quantidade * item.preco_unitario },
+      }
+    end.to_json
   end
 
   def new
@@ -59,6 +67,6 @@ class ComandasController < ApplicationController
   end
 
   def comanda_params
-    params.require(:comanda).permit(:numero, :nome, :status, :total)
+    params.require(:comanda).permit(:numero, :nome, :status, :total, pagamento_attributes: [:id, :comanda_id, :metodo_pagamento, :valor_total_pago, :troco, :data, :hora, :_destroy])
   end
 end

@@ -1,8 +1,9 @@
+<% # app/views/pagamentos/_form.html.erb %>
+<div  data-controller="pagamento">
 <%= form_with(model: pagamento) do |form| %>
   <% if pagamento.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(pagamento.errors.count, "error") %> prohibited this pagamento from being saved:</h2>
-
       <ul>
         <% pagamento.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -10,38 +11,74 @@
       </ul>
     </div>
   <% end %>
+  <table class="table">
+      <thead>
+        <tr>
+          <th>Produto</th>
+          <th>Quantidade Total</th>
+          <th>Quantidade a Pagar</th>
+          <th>Total</th>
+          <th>Valor a Pagar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @itens_por_produto.each do |item| %>
+          <tr>
+            <td><%= item["nome_produto"] %></td>
+            <td>
+              <span class="quantidade-total"><%= item["quantidade_total"] %></span>
+            </td>
+            <td>
+              <% #= form.number_field "quantidade_#{item["nome_produto"]}", value: 0, min: 0, max: item["quantidade_total"], class: "form-control quantidade", data: { controller: "pagamento-update-valor-pagar", action: "pagamento-update-valor-pagar::updateValorPagar", preco: "#{item["preco_total"]}" } %>
+              <%= form.number_field "quantidade_#{item["nome_produto"]}", value: 0, min: 0, max: item["quantidade_total"], class: "form-control quantidade-pagar", data: { action: "pagamento-update-valor-pagar::updateValorPagar", preco: "#{item["preco_total"]}" } %>
+            </td>
+            <td>R$ 
+              <span class="preco-total">
+               <%= number_to_currency(item["preco_total"], unit: "", separator: ",", delimiter: ".") %></td>
+              </span>
+            <td>
+              <% #= form.number_field "valor_#{item["nome_produto"]}", value: 0, min: 0, step: 0.01, class: "form-control valorPagar", data: { controller: "pagamento-update-valor-pagar", action: "pagamento-update-valor-pagar::updateValorPagar" } %>
+              <%= form.number_field "valor_#{item["nome_produto"]}", value: 0, min: 0, step: 0.01, class: "form-control valor-pagar", data: { action: "pagamento-update-valor-pagar::updateValorPagar" } %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
 
-  <div>
-    <%= form.label :comanda_id, style: "display: block" %>
-    <%= form.text_field :comanda_id %>
-  </div>
+  <div class="row">
+      <div class="col-1">
+        <%= form.number_field :comanda_id, class: "form-control", disabled: true, readonly: true %>
+      </div>
+      <div class="col-12"></div>
+      
+      <div class="col-2">
+        <%= form.label :metodo_pagamento, class: "form-label" %>
+        <%= form.select :metodo_pagamento, ["Cŕedito", "Débito", "Dinheiro", "Pix"], {}, class: "form-control" %>
+      </div>
 
-  <div>
-    <%= form.label :metodo_pagamento, style: "display: block" %>
-    <%= form.text_field :metodo_pagamento %>
-  </div>
+      <div class="col-1">
+        <%= form.label :valor_total_pago, "Valor", class: "form-label" %>
+        <%= form.number_field :valor_total_pago, class: "form-control" %>
+      </div>
 
-  <div>
-    <%= form.label :valor_total_pago, style: "display: block" %>
-    <%= form.text_field :valor_total_pago %>
-  </div>
+      <div class="col-1">
+        <%= form.label :troco, class: "form-label" %>
+        <%= form.number_field :troco, class: "form-control" %>
+      </div>
 
-  <div>
-    <%= form.label :troco, style: "display: block" %>
-    <%= form.text_field :troco %>
-  </div>
+      <div class="col-1">
+        <%= form.label :data, class: "form-label" %>
+        <%= form.date_field :data, class: "form-control" %>
+      </div>
 
-  <div>
-    <%= form.label :data, style: "display: block" %>
-    <%= form.date_field :data %>
-  </div>
+      <div class="col-1">
+        <%= form.label :hora, class: "form-label" %>
+        <%= form.time_field :hora, class: "form-control" %>
+      </div>
 
-  <div>
-    <%= form.label :hora, style: "display: block" %>
-    <%= form.time_field :hora %>
-  </div>
-
-  <div>
-    <%= form.submit "#{ request.path == new_pagamento_path ? 'Criar' : 'Salvar' }" %>
+      <div class="col-1">
+        <%= form.submit "#{request.path == new_pagamento_path ? "Criar" : "Salvar"}", class: "btn btn-primary mt-4" %>
+      </div>
   </div>
 <% end %>
+</div>

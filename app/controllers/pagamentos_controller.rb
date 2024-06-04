@@ -13,6 +13,13 @@ class PagamentosController < ApplicationController
   # GET /pagamentos/new
   def new
     @pagamento = Pagamento.new
+    @pagamento.comanda_id = params[:comanda_id]
+    @pagamento.data = Date.today
+    @pagamento.hora = Time.now
+
+    if params[:itens_por_produto].present?
+      @itens_por_produto = JSON.parse(params[:itens_por_produto])
+    end
   end
 
   # GET /pagamentos/1/edit
@@ -57,14 +64,18 @@ class PagamentosController < ApplicationController
     end
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_pagamento
-      @pagamento = Pagamento.find(params[:id])
-    end
+  def pagar
+  end
 
-    # Only allow a list of trusted parameters through.
-    def pagamento_params
-      params.require(:pagamento).permit(:comanda_id, :metodo_pagamento, :valor_total_pago, :troco, :data, :hora)
-    end
+  private
+
+  # Use callbacks to share common setup or constraints between actions.
+  def set_pagamento
+    @pagamento = Pagamento.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def pagamento_params
+    params.require(:pagamento).permit(:comanda_id, :metodo_pagamento, :valor_total_pago, :troco, :data, :hora)
+  end
 end

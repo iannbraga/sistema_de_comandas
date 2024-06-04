@@ -16,5 +16,7 @@ Rails.application.routes.draw do
 
   resources :vendas
 
+  post "comandas/:id/pagar", to: "pagamentos#pagar", as: "pagar_comanda"
+
   root "comandas#index"
 end

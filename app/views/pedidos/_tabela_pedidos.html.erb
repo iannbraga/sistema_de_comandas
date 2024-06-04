@@ -4,12 +4,13 @@
             <th scope="col">Comanda</th>
             <th scope="col">Itens</th>
             <th scope="col">Total</th>
+            <th scope="col">Pago</th>
             <th scope="col">Ações</th>
         </tr>
     </thead>
     <tbody>
         <% pedidos.each do |pedido| %>
-            <tr>
+            <tr class="<%= pedido.finalizado ? "bg-success" : "bg-danger" %>">
                 <td><%= pedido.comanda_id %></td>
                 <td>
                     <table class="table text-center">
@@ -34,10 +35,11 @@
                     </table>
                 </td>
                 <td>R$ <%= pedido.total %></td>
+                <td><%= pedido.finalizado ? "Sim" : "Não" %></td>
                 <td>
                     <div class="row">
                         <div class="col d-flex justify-content-center">
-                            <%= link_to edit_produto_path(pedido), class: "nav-link me-1" do %>
+                            <%= link_to edit_pedido_path(pedido), class: "nav-link me-1" do %>
                                 <i class="bi bi-pencil btn btn-warning"></i>
                             <% end %>
                             <%= button_to pedido, method: :delete, class: "nav-link ms-1" do %>

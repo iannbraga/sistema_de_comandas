@@ -31,27 +31,15 @@
   <hr>
   
   <div class="col-10 pt-4">
-    <h2>Produtos:</h2>
-    <table class="table table-striped" id="tabela-produtos">
-      <thead>
-        <tr>
-          <th>Produto</th>
-          <th>Quantidade</th>
-          <th>Total</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @itens_por_produto.each do |produto, itens| %>
-          <% quantidade_total = itens.sum(&:quantidade) %>
-          <% preco_total = itens.sum { |item| item.quantidade * item.preco_unitario } %>
-          <tr>
-            <td><%= produto.nome %></td>
-            <td><%= quantidade_total %></td>
-            <td><%= number_to_currency(preco_total, unit: "", separator: ",", delimiter: ".") %></td>
-          </tr>
+    <% if @comanda.pedidos.empty? %>
+      <p class="pb-3 text-center">  Não tem pedidos.</p>
+    <% else %>
+      <% @comanda.pedidos.each do |pedido| %>
+        <% unless pedido.finalizado %>
+          <%= render "pedidos/pedido", pedido: pedido %>
         <% end %>
-      </tbody>
-    </table>
+      <% end %>
+    <% end %>
   </div>
   
   <hr>
@@ -63,20 +51,18 @@
       <input class="form-control" type="text" aria-label="" value="<%= @comanda.total %>" disabled readonly>
     </div>
   </div>
+
+  
 </div>
 
 <div class="row pt-4">
-    <div class="col">
-      <% #= render "pagamento_itens_fields", item: Item.new %>
-      <% #= render "pagamentos/form", pagamento: Pagamento.new, comanda_id: @comanda.id, id: "pagamento-form" %>
-      <% #= link_to "Adicionar pagamento", new_pagamento_path(itens_por_produto: @itens_por_produto), class: "btn btn-primary" %>
-      <% #= link_to "Adicionar pagamento", new_pagamento_path(itens_por_produto: @itens_por_produto.map { |item, quantidade| [item.produto_id, quantidade] }.to_json), class: "btn btn-primary" %>
-      <%= link_to "Adicionar pagamento", new_pagamento_path(itens_por_produto: @itens_por_produto_json, comanda_id: @comanda.id), class: "btn btn-primary" %>
-
-    </div>
+    
 </div>
 
 <%= link_to new_pedido_path(comanda_id: @comanda.id), class: "btn btn-primary floating-btn-square fs-5" do %>
   Adicionar pedido
   <i class="bi bi-plus"></i>
 <% end %>
+
+
+<p style="color: green"><%= notice %></p>

@@ -29,12 +29,16 @@
           <% end %>
         </div>
       </div>
-      <div class="col-12 p-2">
+      <div class="col-10 p-2">
         <%= f.label :total, "Total", class: "form-label" %>
         <div class="input-group w-50">
           <span class="input-group-text" id="basic-addon1">R$</span>
           <%= f.number_field :total, value: 0, step: 0.01, class: "form-control total-pedido" %>
         </div>
+      </div>
+      <div class="col-2 p-2">
+        <%= f.label :finalizado, "Finalizado", class: "form-label" %>
+        <%= f.check_box :finalizado, class: "form-check-input" %>
       </div>
       <div class="col-6 p-2 d-flex justify-content-center">
         <%= f.submit "#{request.path == new_pedido_path ? "Criar" : "Salvar"}", class: "btn btn-outline-dark m-2 w-100" %>

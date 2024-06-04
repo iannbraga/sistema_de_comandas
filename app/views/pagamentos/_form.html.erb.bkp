@@ -1,0 +1,44 @@
+<%= form_with(model: pagamento) do |form| %>
+  <% if pagamento.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(pagamento.errors.count, "error") %> prohibited this pagamento from being saved:</h2>
+      <ul>
+        <% pagamento.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row">
+      <%= form.hidden_field :comanda_id, value: comanda_id %>
+      <div class="col-2">
+        <%= form.label :metodo_pagamento, class: "form-label" %>
+        <%= form.select :metodo_pagamento, ["Cŕedito", "Débito", "Dinheiro", "Pix"], {}, class: "form-control" %>
+      </div>
+
+      <div class="col-1">
+        <%= form.label :valor_total_pago, "Valor", class: "form-label" %>
+        <%= form.number_field :valor_total_pago, class: "form-control" %>
+      </div>
+
+      <div class="col-1">
+        <%= form.label :troco, class: "form-label" %>
+        <%= form.number_field :troco, class: "form-control" %>
+      </div>
+
+      <div class="col-1">
+        <%= form.label :data, class: "form-label" %>
+        <%= form.date_field :data, class: "form-control" %>
+      </div>
+
+      <div class="col-1">
+        <%= form.label :hora, class: "form-label" %>
+        <%= form.time_field :hora, class: "form-control" %>
+      </div>
+
+      <div class="col-1">
+        <%= form.submit "#{request.path == new_pagamento_path ? "Criar" : "Salvar"}", class: "btn btn-primary mt-4" %>
+      </div>
+  </div>
+<% end %>

@@ -1,0 +1,39 @@
+<% # app/views/pagamentos/_form.html.erb %> 
+<h2>Pagamento:</h2>
+<%= form_with(model: pagamento, url: pagar_comanda_path(comanda_id: comanda_id), method: :post) do |form| %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Produto</th>
+        <th>Quantidade Total</th>
+        <th>Quantidade a Pagar</th>
+        <th>Total</th>
+        <th>Valor a Pagar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @itens_por_produto.each do |produto, itens| %>
+        <% quantidade_total = itens.sum(&:quantidade) %>
+        <% preco_total = itens.sum { |item| item.quantidade * item.preco_unitario } %>
+        <tr>
+          <td><%= produto.nome %></td>
+          <td><%= quantidade_total %> uni.</td>
+          <td>
+            <%= form.number_field :quantidade, value: 0, min: 0, max: quantidade_total, name: "pagamento[itens][#{produto.id}][quantidade]", class: "form-control" %>
+          </td>
+          <td>R$ <%= number_to_currency(preco_total, unit: "", separator: ",", delimiter: ".") %></td>
+          <td>
+            <%= form.number_field :valor, value: 0, min: 0, step: "0.01", name: "pagamento[itens][#{produto.id}][valor]", class: "form-control" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div class="form-group">
+    <%= form.label :metodo_pagamento, "Método de Pagamento" %>
+    <%= form.select :metodo_pagamento, options_for_select([["Dinheiro", "dinheiro"], ["Cartão", "cartao"]]), {}, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= form.submit "Pagar", class: "btn btn-primary" %>
+  </div>
+<% end %>
