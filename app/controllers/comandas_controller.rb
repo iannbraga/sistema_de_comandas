@@ -8,8 +8,8 @@ class ComandasController < ApplicationController
   end
 
   def show
-    @itens_por_produto = @comanda.pedidos.includes(itens: :produto).flat_map(&:itens).group_by(&:produto)
-    @itens_por_produto_json = @comanda.pedidos.includes(itens: :produto).flat_map(&:itens).group_by(&:produto).map do |produto, itens|
+    @itens_por_produto = @comanda.pedidos.where(finalizado: false).includes(itens: :produto).flat_map(&:itens).group_by(&:produto)
+    @itens_por_produto_json = @comanda.pedidos.where(finalizado: false).includes(itens: :produto).flat_map(&:itens).group_by(&:produto).map do |produto, itens|
       {
         nome_produto: produto.nome,
         quantidade_total: itens.sum(&:quantidade),

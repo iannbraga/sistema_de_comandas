@@ -4,7 +4,7 @@
     <h1 class="display-5">
       <%= link_to comandas_path, class: "nav-link" do %>
         <i class="bi bi-caret-left fs-1"></i>
-        Comanda N° <%= @comanda.numero %>
+        Comanda N° <%= @comanda.numero %> | # <%= @comanda.id %>
       <% end %>
       <span class="ms-5 badge fs-6 <%= status_comanda(@comanda.status) %>">
         <%= @comanda.status %>
@@ -66,6 +66,43 @@
 </div>
 
 <div class="row pt-4">
+    <div class="col-12">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Método pagamento</th>
+            <th>Valor</th>
+            <th>Troco</th>
+            <th>Data</th>
+            <th>Hora</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @comanda.pagamentos.each do |pagamento| %>
+            <tr>
+              <td><%= pagamento.metodo_pagamento %></td>
+              <td><%= pagamento.valor_total_pago %></td>
+              <td><%= pagamento.troco %></td>
+              <td><%= pagamento.data.strftime("%d/%m/%y") %></td>
+              <td><%= pagamento.hora.strftime("%H:%M") %></td>
+              <td>
+                <div class="row">
+                  <div class="col d-flex justify-content-center">
+                    <%= link_to edit_pagamento_path(pagamento), class: "nav-link me-1" do %>
+                      <i class="bi bi-pencil btn btn-warning"></i>
+                    <% end %>
+                    <%= button_to pagamento, method: :delete, class: "nav-link ms-1" do %>
+                      <i class="bi bi-trash btn btn-danger"></i>
+                    <% end %>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>          
+      </table>
+    </div>
     <div class="col">
       <% #= render "pagamento_itens_fields", item: Item.new %>
       <% #= render "pagamentos/form", pagamento: Pagamento.new, comanda_id: @comanda.id, id: "pagamento-form" %>

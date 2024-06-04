@@ -13,7 +13,10 @@ class PagamentosController < ApplicationController
   # GET /pagamentos/new
   def new
     @pagamento = Pagamento.new
-    @pagamento.comanda_id = params[:comanda_id]
+    # @pagamento.comanda_id = Comanda.find_by(id: params[:comanda_id]).id if params[:comanda_id].present?
+    if params[:comanda_id].present?
+      @pagamento.comanda_id = params[:comanda_id] if Comanda.exists?(id: params[:comanda_id])
+    end
     @pagamento.data = Date.today
     @pagamento.hora = Time.now
 
@@ -29,6 +32,8 @@ class PagamentosController < ApplicationController
   # POST /pagamentos or /pagamentos.json
   def create
     @pagamento = Pagamento.new(pagamento_params)
+    @pagamento.data = Date.today
+    @pagamento.hora = Time.now
 
     respond_to do |format|
       if @pagamento.save

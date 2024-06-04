@@ -1,5 +1,39 @@
 <% # app/views/pagamentos/_form.html.erb %>
 <div  data-controller="pagamento">
+<% if @itens_por_produto.present? %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Produto</th>
+        <th>Quantidade Total</th>
+        <th>Quantidade a Pagar</th>
+        <th>Total</th>
+        <th>Valor a Pagar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @itens_por_produto.each do |item| %>
+        <tr>
+          <td><%= item["nome_produto"] %></td>
+          <td>
+            <span class="quantidade-total"><%= item["quantidade_total"] %></span>
+          </td>
+          <td>
+            <% #= form.number_field "quantidade_#{item["nome_produto"]}", value: 0, min: 0, max: item["quantidade_total"], class: "form-control quantidade-pagar", data: { action: "pagamento-update-valor-pagar::updateValorPagar", preco: "#{item["preco_total"]}" } %>
+            <%= number_field_tag "quantidade_#{item["nome_produto"]}", 0, min: 0, max: item["quantidade_total"], class: "form-control quantidade-pagar", data: { action: "pagamento-update-valor-pagar::updateValorPagar", preco: "#{item["preco_total"]}" } %>
+          </td>
+          <td>R$ 
+            <span class="preco-total">
+              <%= number_to_currency(item["preco_total"], unit: "", separator: ",", delimiter: ".") %></td>
+            </span>
+          <td>
+            <%= number_field_tag "valor_#{item["nome_produto"]}", 0, min: 0, step: 0.01, class: "form-control valor-pagar", data: { action: "pagamento-update-valor-pagar::updateValorPagar" } %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
 <%= form_with(model: pagamento) do |form| %>
   <% if pagamento.errors.any? %>
     <div style="color: red">
@@ -11,44 +45,12 @@
       </ul>
     </div>
   <% end %>
-  <table class="table">
-      <thead>
-        <tr>
-          <th>Produto</th>
-          <th>Quantidade Total</th>
-          <th>Quantidade a Pagar</th>
-          <th>Total</th>
-          <th>Valor a Pagar</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @itens_por_produto.each do |item| %>
-          <tr>
-            <td><%= item["nome_produto"] %></td>
-            <td>
-              <span class="quantidade-total"><%= item["quantidade_total"] %></span>
-            </td>
-            <td>
-              <% #= form.number_field "quantidade_#{item["nome_produto"]}", value: 0, min: 0, max: item["quantidade_total"], class: "form-control quantidade", data: { controller: "pagamento-update-valor-pagar", action: "pagamento-update-valor-pagar::updateValorPagar", preco: "#{item["preco_total"]}" } %>
-              <%= form.number_field "quantidade_#{item["nome_produto"]}", value: 0, min: 0, max: item["quantidade_total"], class: "form-control quantidade-pagar", data: { action: "pagamento-update-valor-pagar::updateValorPagar", preco: "#{item["preco_total"]}" } %>
-            </td>
-            <td>R$ 
-              <span class="preco-total">
-               <%= number_to_currency(item["preco_total"], unit: "", separator: ",", delimiter: ".") %></td>
-              </span>
-            <td>
-              <% #= form.number_field "valor_#{item["nome_produto"]}", value: 0, min: 0, step: 0.01, class: "form-control valorPagar", data: { controller: "pagamento-update-valor-pagar", action: "pagamento-update-valor-pagar::updateValorPagar" } %>
-              <%= form.number_field "valor_#{item["nome_produto"]}", value: 0, min: 0, step: 0.01, class: "form-control valor-pagar", data: { action: "pagamento-update-valor-pagar::updateValorPagar" } %>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-
   <div class="row">
       <div class="col-1">
-        <%= form.number_field :comanda_id, class: "form-control", disabled: true, readonly: true %>
+        <%= form.label :comanda_id, class: "form-label" %>
+        <%= form.number_field :comanda_id, class: "form-control" %>
       </div>
+
       <div class="col-12"></div>
       
       <div class="col-2">
@@ -58,7 +60,7 @@
 
       <div class="col-1">
         <%= form.label :valor_total_pago, "Valor", class: "form-label" %>
-        <%= form.number_field :valor_total_pago, class: "form-control" %>
+        <%= form.number_field :valor_total_pago, step: 0.01, class: "form-control" %>
       </div>
 
       <div class="col-1">
