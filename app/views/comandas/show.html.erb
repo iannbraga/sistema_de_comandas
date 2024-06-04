@@ -28,6 +28,11 @@
   </div>
 </div>
 <div class="row pt-3">
+   <% @comanda.pedidos.each do |pedido| %>
+      <% unless pedido.finalizado %>
+        <%= render "pedidos/pedido", pedido: pedido %>
+      <% end %>
+    <% end %>
   <hr>
   
   <div class="col-10 pt-4">
